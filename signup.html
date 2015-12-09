@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Happy Farm</title>
+<style type="text/css">
+
+#frame {
+position: absolute;
+top: 20%; 
+left: 25%; 
+width: 960px; 
+}
+#frame img { 
+max-width:100%; 
+width:expression(document.body.clientWidth>document.getElementById("frame").scrollWidth*8/10? "100%": "auto" );
+heitht:auto;
+}
+
+input[type="text"] {
+position: absolute;
+top: 200px;
+left: 440px;
+height:20px;
+}
+
+input[type="password"] {
+position: absolute;
+top: 250px;
+left: 440px;
+height:20px;
+}
+
+input[name="uname"] {
+position: absolute;
+top: 300px;
+left: 440px;
+}
+
+input[type="image"] {
+position: absolute;
+top: 360px;
+left: 440px;
+}
+
+</style>
+</head>
+<body>
+<div id="frame">
+<img id="farm0" src="img\signup.jpg" />
+
+<form method="post" action="0_signup.php">
+<input type="text" name="id"><br />
+<input type="password" name="pwd"><br />
+<input type="text" name="uname"><br />
+<input type="image" value="submit" src="img\ok.png" alt="提交">
+<!--<button type="submit"><img src="img\ok.png" alt="submit"/></button>-->
+</form>
+
+</div>
+</body>
+</html>
