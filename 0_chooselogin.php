@@ -33,7 +33,7 @@ left: 300px;
 <div id="frame">
 <img id="farm1" src="img\farm1.gif" />
 <a href="login.html"><img id="clogin" src="img\clogin.png"></a>
-<a href="0_signup.php"><img id="csign" src="img\csign.png"></a>
+<a href="signup.html"><img id="csign" src="img\csign.png"></a>
 </div>
 </body>
 </html>
