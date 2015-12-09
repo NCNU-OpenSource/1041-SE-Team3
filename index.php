@@ -27,7 +27,7 @@ left: 385px;
 <body>
 <div id="frame">
 <img id="farm0" src="img\farm0.jpg" />
-<a href="連結URL"><img id="gamestart" src="img\gamestart.png"></a>
+<a href="0_chooselogin.php"><img id="gamestart" src="img\gamestart.png"></a>
 
 <!--改用按鈕的方式
 <button type="button" value="gamestart" onclick="location.href='要前往的網頁連結'">
