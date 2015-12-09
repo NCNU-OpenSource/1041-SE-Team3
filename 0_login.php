@@ -19,8 +19,7 @@ $sql_query = "SELECT * FROM `user` WHERE `uid`='".$uid."' AND `pwd`='".$pwd."';"
 $result = mysqli_query($conn,$sql_query) or die("Query Fail! ".mysqli_error($conn));
 $numRow = mysqli_num_rows($result);
 if ($numRow ==0){
-	echo "Invalid Username or Password <br /> Returning to the previous page..... <br />";
-	header("Refresh: 3; url=0_chooselogin.php");
+	header("Location: 0_elogin.php");
 }
 else {
 	$row=mysqli_fetch_assoc($result);
