@@ -15,7 +15,7 @@
 #frame img { 
     max-width:100%; 
     width:expression(document.body.clientWidth>document.getElementById("frame").scrollWidth*8/10? "100%": "auto" );
-    heitht:auto;
+    height:auto;
 }
 #gamestart{
     position: absolute;
@@ -36,5 +36,6 @@
 </button>-->
 
 </div>
+<embed src="music/happy.mp3" autostart="true" hidden="true" loop="true">
 </body>
 </html>
