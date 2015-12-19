@@ -26,7 +26,7 @@
 <img id="success" src="img\success.jpg" />
 </div>
 <?php
-    header("Refresh: 3; url=login.html");
+    header("Refresh: 3;  url=login.html");
 ?>
 </body>
 </html>
