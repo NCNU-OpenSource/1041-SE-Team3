@@ -24,5 +24,6 @@ header("Refresh: 3; url=0_chooselogin.php");
 <div id="frame">
 <img id="errorlogin" src="img\errorlogin.jpg" />
 </div>
+<embed src="music/happy.mp3" autostart="true" hidden="true" loop="true">
 </body>
 </html>
