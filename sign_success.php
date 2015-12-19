@@ -15,7 +15,7 @@
 #frame img { 
     max-width:100%; 
     width:expression(document.body.clientWidth>document.getElementById("frame").scrollWidth*8/10? "100%": "auto" );
-    heitht:auto;
+    height:auto;
 }
 
 }
@@ -26,7 +26,8 @@
 <img id="success" src="img\success.jpg" />
 </div>
 <?php
-    header("Refresh: 3;  url=login.html");
+    header("Refresh: 3; url=login.html");
 ?>
+<embed src="music/happy.mp3" autostart="true" hidden="true" loop="true">
 </body>
 </html>
