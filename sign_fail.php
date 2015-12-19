@@ -27,7 +27,7 @@
 <img id="fail" src="img\fail.jpg" />
 </div>
 <?php
-    header("Refresh: 3; url=signup.html");
+    header("Refresh: 3;  url=signup.html");
 ?>
 </body>
 </html>
