@@ -15,7 +15,7 @@
 #frame img { 
     max-width:100%; 
     width:expression(document.body.clientWidth>document.getElementById("frame").scrollWidth*8/10? "100%": "auto" );
-    heitht:auto;
+    height:auto;
 }
 
 </style>
@@ -27,9 +27,10 @@
 </div>
 <?php
     //將session清空
-    unset($_SESSION['username']);
+    unset($_SESSION['uid']);
     
     echo '<meta http-equiv=REFRESH CONTENT=3;url=index.php>';
 ?>
+<embed src="music/happy.mp3" autostart="true" hidden="true" loop="true">
 </body>
 </html>
