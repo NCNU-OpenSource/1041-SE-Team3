@@ -31,7 +31,7 @@ $id=$_SESSION['uid'];
 #frame img { 
     max-width:100%; 
     width:expression(document.body.clientWidth>document.getElementById("frame").scrollWidth*8/10? "100%": "auto" );
-    heitht:auto;
+    height:auto;
 }
 table { 
     position: absolute;
@@ -242,5 +242,6 @@ table {
     <div class="show5"></div>
     <div class="show6"></div>
 </div>
+<embed src="music/happy.mp3" autostart="true" hidden="true" loop="true">
 </body>
 </html>
