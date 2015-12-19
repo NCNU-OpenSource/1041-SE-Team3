@@ -11,10 +11,11 @@ header("Refresh: 3; url=0_chooselogin.php");
 <style type="text/css">
 
 #frame {
-position: absolute;
-top: 20%; 
-left: 25%; 
-width: 960px; 
+    position: absolute; 
+    width: 960px; 
+    top: 50%;
+    left: 50%;
+    margin: -270px 0 0 -480px;
 }
 
 </style>
