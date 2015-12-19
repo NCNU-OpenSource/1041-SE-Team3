@@ -16,7 +16,7 @@
 #frame img { 
     max-width:100%; 
     width:expression(document.body.clientWidth>document.getElementById("frame").scrollWidth*8/10? "100%": "auto" );
-    heitht:auto;
+    height:auto;
 }
 #clogin{
     position: absolute;
@@ -37,5 +37,6 @@
 <a href="login.html"><img id="clogin" src="img\clogin.png"></a>
 <a href="signup.html"><img id="csign" src="img\csign.png"></a>
 </div>
+<embed src="music/happy.mp3" autostart="true" hidden="true" loop="true">
 </body>
 </html>
