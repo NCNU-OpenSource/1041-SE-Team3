@@ -1,3 +1,4 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -6,25 +7,26 @@
 <style type="text/css">
 
 #frame {
-position: absolute;
-top: 20%; 
-left: 25%; 
-width: 960px; 
+    position: absolute; 
+    width: 960px; 
+    top: 50%;
+    left: 50%;
+    margin: -270px 0 0 -480px;
 }
 #frame img { 
-max-width:100%; 
-width:expression(document.body.clientWidth>document.getElementById("frame").scrollWidth*8/10? "100%": "auto" );
-heitht:auto;
+    max-width:100%; 
+    width:expression(document.body.clientWidth>document.getElementById("frame").scrollWidth*8/10? "100%": "auto" );
+    heitht:auto;
 }
 #clogin{
-position: absolute;
-top:180px;
-left: 300px;
+    position: absolute;
+    top:180px;
+    left: 300px;
 }
 #csign{
-position: absolute;
-top:320px;
-left: 300px;
+    position: absolute;
+    top:320px;
+    left: 300px;
 }
 </style>
 
