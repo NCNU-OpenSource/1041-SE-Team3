@@ -3,6 +3,7 @@
 correct->main.php
 error->0_chooselogin.php
 */
+
 session_start();
 $host = 'localhost';
 $user = 'se3';
@@ -12,7 +13,7 @@ $conn = mysqli_connect($host, $user, $pass,$db) or die('Error with MySQL connect
 mysqli_query($conn,"SET NAMES utf8"); 
 //mysql_select_db($db, $conn); 
 
-
+/*
 $uid = addslashes($_POST['id']);
 $pwd = addslashes($_POST['pwd']);
 $sql_query = "SELECT * FROM `user` WHERE `uid`='".$uid."' AND `pwd`='".$pwd."';";
@@ -23,10 +24,11 @@ if ($numRow ==0){
 }
 else {
 	$row=mysqli_fetch_assoc($result);
-	header("Location: 02.main.php");
+	header("Location: 1_main.php");
 }
-/*
-$_SESSION['uID'] = "";
+*/
+
+$_SESSION['uid'] = "";
 
 if(isset($_POST['id'])){
     $userName = $_POST['id'];
@@ -43,15 +45,30 @@ if(isset($_POST['pwd'])){
 $sql = "SELECT * FROM user WHERE uid='" . $userName . "' AND pwd= '" . $passWord . "'";
 if ($result = mysqli_query($conn,$sql)) {
 	if ($row=mysqli_fetch_array($result)) {
-		$_SESSION['uID'] = $row['uid'];
-		$id=$_SESSION['uID'];
-        header("Location: 02.main.php");
-		exit(0);
+		$_SESSION['uid'] = $row['uid'];
+		$id=$_SESSION['uid'];
+		
+		//更新登入次數(登入次數=1時在1_main.php給提示)
+        $sql1 = "UPDATE user SET ucount=(ucount+1) WHERE uid='$id' ;";
+	    mysqli_query($conn,$sql1) or die("MySQL update message error"); 
+	    
+	    //如果登入次數為1，進入新手提示
+        $sql2 = "select ucount from user where uid='$id';";
+        $results2=mysqli_query($conn,$sql2);
+     
+        while ($rs2=mysqli_fetch_array($results2)) { 
+            if($rs2['ucount']==1){
+                header("Location: 1_teach.php");
+            }
+            else{
+            	header("Location: 1_main.php");
+		        exit(0);
+            }
+        }
     }
     else {
-		echo "Invalid Username or Password - Please try again <br />";
-		//header("Refresh: 3; url=0_chooselogin.php");
+		header("Location: 0_elogin.php");
     }
 }
- */      
+      
 ?>
