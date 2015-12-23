@@ -3,22 +3,40 @@ pwd:12345
 db:farmdb
 
 user
-uid(primary):varchar
-pwd:varchar
-uname:varchar
-uexp:int
-ulevel:int
-uenergy:int
-umoney:int
+uid(primary):玩家帳號 varchar
+pwd:玩家密碼 varchar
+uname:暱稱 varchar
+uexp:玩家經驗 int
+ulevel:玩家等級 int
+uenergy:玩家體力 int
+umoney:玩家金錢 int
+ulogtime:玩家登入的時間 (？？？？？？)
 
-�����w�]100
-��O�w�]10
-���Źw�]1
 
 land
-farmid
-uid
-lid
-lmoney
-llevel
-lstatus
+farmid:土地序號(用不到) int
+uid:使用者ID int
+lid:土地編號 int
+lmoney:土地所需金錢 int 
+llevel:土地所需等級 int
+lstatus:土地狀態 int
+lgtime:土地當下種植的時間(？？？？？)
+
+seed
+sid:種子名稱 varchar
+sprice:種子所需價錢 int
+stime:種子所需時間 time (？？？？？)
+sexp:種子增加的經驗值 int
+senergy:種子扣的體力 int
+slevel:種子所需等級 int
+scount:種子數量 int
+
+product 成品
+pid:成品名稱(=種子名稱) varchar
+pprice:成品販售價錢 int
+pcount:成品數量 int
+penergy:物品所增加的體力 int
+
+
+商店裡面會含：seed & product(補充體力)
+倉庫裡面會含：seed & product
