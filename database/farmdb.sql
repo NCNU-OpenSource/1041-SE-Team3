@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.2
+-- version 4.4.14
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Dec 23, 2015 at 05:09 下午
--- Server version: 10.1.9-MariaDB
--- PHP Version: 5.6.15
+-- 主機: 127.0.0.1
+-- 產生時間： 2015-12-26 09:13:10
+-- 伺服器版本: 5.6.26
+-- PHP 版本： 5.6.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,26 +17,26 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `farmdb`
+-- 資料庫： `farmdb`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `land`
+-- 資料表結構 `land`
 --
 
-CREATE TABLE `land` (
+CREATE TABLE IF NOT EXISTS `land` (
   `farmid` int(11) NOT NULL,
   `uid` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
   `lid` int(11) NOT NULL DEFAULT '1',
   `lmoney` int(11) NOT NULL,
   `llevel` int(11) NOT NULL DEFAULT '1',
   `lstatus` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `land`
+-- 資料表的匯出資料 `land`
 --
 
 INSERT INTO `land` (`farmid`, `uid`, `lid`, `lmoney`, `llevel`, `lstatus`) VALUES
@@ -65,53 +65,64 @@ INSERT INTO `land` (`farmid`, `uid`, `lid`, `lmoney`, `llevel`, `lstatus`) VALUE
 -- --------------------------------------------------------
 
 --
--- Table structure for table `product`
+-- 資料表結構 `product`
 --
 
-CREATE TABLE `product` (
+CREATE TABLE IF NOT EXISTS `product` (
   `pid` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
   `pprice` int(11) NOT NULL,
-  `pcount` int(11) NOT NULL,
   `penergy` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `product`
+-- 資料表的匯出資料 `product`
 --
 
-INSERT INTO `product` (`pid`, `pprice`, `pcount`, `penergy`) VALUES
-('tomato', 100, 0, 5);
+INSERT INTO `product` (`pid`, `pprice`, `penergy`) VALUES
+('tomato', 100, 5);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `seed`
+-- 資料表結構 `seed`
 --
 
-CREATE TABLE `seed` (
+CREATE TABLE IF NOT EXISTS `seed` (
   `sid` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
   `sprice` int(11) NOT NULL,
   `stime` time NOT NULL,
   `sexp` int(11) NOT NULL,
   `senergy` int(11) NOT NULL,
-  `slevel` int(11) NOT NULL,
-  `scount` int(11) NOT NULL
+  `slevel` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `seed`
+-- 資料表的匯出資料 `seed`
 --
 
-INSERT INTO `seed` (`sid`, `sprice`, `stime`, `sexp`, `senergy`, `slevel`, `scount`) VALUES
-('tomato', 100, '00:01:00', 20, 2, 1, 10);
+INSERT INTO `seed` (`sid`, `sprice`, `stime`, `sexp`, `senergy`, `slevel`) VALUES
+('tomato', 100, '00:01:00', 20, 2, 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- 資料表結構 `store`
 --
 
-CREATE TABLE `user` (
+CREATE TABLE IF NOT EXISTS `store` (
+  `uid` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sid` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `pid` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `lid` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- 資料表結構 `user`
+--
+
+CREATE TABLE IF NOT EXISTS `user` (
   `uid` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
   `pwd` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
   `uname` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -124,7 +135,7 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data for table `user`
+-- 資料表的匯出資料 `user`
 --
 
 INSERT INTO `user` (`uid`, `pwd`, `uname`, `uexp`, `ulevel`, `uenergy`, `umoney`, `ucount`, `ulogtime`) VALUES
@@ -132,43 +143,57 @@ INSERT INTO `user` (`uid`, `pwd`, `uname`, `uexp`, `ulevel`, `uenergy`, `umoney`
 ('jack', '123', 'Jack', 0, 1, 10, 1000, 1, '0000-00-00 00:00:00'),
 ('sheng', '123', 'Sheng', 0, 1, 10, 1000, 4, '0000-00-00 00:00:00');
 
+-- --------------------------------------------------------
+
 --
--- Indexes for dumped tables
+-- 資料表結構 `warehouse`
+--
+
+CREATE TABLE IF NOT EXISTS `warehouse` (
+  `uid` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sid` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `scount` int(11) NOT NULL,
+  `pid` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `pcount` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- 已匯出資料表的索引
 --
 
 --
--- Indexes for table `land`
+-- 資料表索引 `land`
 --
 ALTER TABLE `land`
   ADD PRIMARY KEY (`farmid`);
 
 --
--- Indexes for table `product`
+-- 資料表索引 `product`
 --
 ALTER TABLE `product`
   ADD PRIMARY KEY (`pid`);
 
 --
--- Indexes for table `seed`
+-- 資料表索引 `seed`
 --
 ALTER TABLE `seed`
   ADD PRIMARY KEY (`sid`);
 
 --
--- Indexes for table `user`
+-- 資料表索引 `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`uid`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- 在匯出的資料表使用 AUTO_INCREMENT
 --
 
 --
--- AUTO_INCREMENT for table `land`
+-- 使用資料表 AUTO_INCREMENT `land`
 --
 ALTER TABLE `land`
-  MODIFY `farmid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `farmid` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=22;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
