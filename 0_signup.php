@@ -44,7 +44,31 @@ if($id != null && $pwd != null && $name != null )
         mysqli_query($conn,$sql6)or die("insert error");
         $sql7 = "insert into land (lid, lmoney, llevel, lstatus, uid) values ('7', '5000', '2', '1', '$id')";
         mysqli_query($conn,$sql7)or die("insert error");
-        
+
+        //新增使用者id進去warehouse table
+        $sql8 = "insert into warehouse (uid, sid, scount, pid, pcount) values ('$id', 'tomato', '1', 'tomato', '0')";
+        mysqli_query($conn,$sql8)or die("insert error");
+        $sql9 = "insert into warehouse (uid, sid, scount, pid, pcount) values ('$id', 'beetroot', '1', 'beetroot', '0')";
+        mysqli_query($conn,$sql9)or die("insert error");
+        $sql10 = "insert into warehouse (uid, sid, scount, pid, pcount) values ('$id', 'carrot', '1', 'carrot', '0')";
+        mysqli_query($conn,$sql10)or die("insert error");
+        $sql11 = "insert into warehouse (uid, sid, scount, pid, pcount) values ('$id', 'eggplant', '0', 'eggplant', '0')";
+        mysqli_query($conn,$sql11)or die("insert error");
+        $sql12 = "insert into warehouse (uid, sid, scount, pid, pcount) values ('$id', 'yellowbean', '0', 'yellowbean', '0')";
+        mysqli_query($conn,$sql12)or die("insert error");
+
+        //新增使用者id進去store
+        $sql13 = "insert into store (uid, sid, pid) values ('$id', 'tomato', 'tomato')";
+        mysqli_query($conn,$sql13)or die("insert error");
+        $sql14 = "insert into store (uid, sid, pid) values ('$id', 'beetroot', 'beetroot')";
+        mysqli_query($conn,$sql14)or die("insert error");
+        $sql15 = "insert into store (uid, sid, pid) values ('$id', 'carrot', 'carrot')";
+        mysqli_query($conn,$sql15)or die("insert error");
+        $sql16 = "insert into store (uid, sid, pid) values ('$id', 'eggplant', 'eggplant')";
+        mysqli_query($conn,$sql16)or die("insert error");
+        $sql17 = "insert into store (uid, sid, pid) values ('$id', 'yellowbean', 'yellowbean')";
+        mysqli_query($conn,$sql17)or die("insert error");
+
 }
 else
 {
