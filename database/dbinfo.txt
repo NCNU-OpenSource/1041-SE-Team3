@@ -1,4 +1,4 @@
-user:se3
+﻿user:se3
 pwd:12345
 db:farmdb
 
@@ -14,7 +14,7 @@ ulogtime:玩家登入的時間 (？？？？？？)
 
 
 land
-farmid:土地序號(用不到) int
+farmid:土地序號(用不到) int (主)
 uid:使用者ID int
 lid:土地編號 int
 lmoney:土地所需金錢 int 
@@ -23,20 +23,28 @@ lstatus:土地狀態 int
 lgtime:土地當下種植的時間(？？？？？)
 
 seed
-sid:種子名稱 varchar
+sid:種子名稱 varchar (主)
 sprice:種子所需價錢 int
 stime:種子所需時間 time (？？？？？)
 sexp:種子增加的經驗值 int
 senergy:種子扣的體力 int
 slevel:種子所需等級 int
-scount:種子數量 int
 
 product 成品
-pid:成品名稱(=種子名稱) varchar
+pid:成品名稱(=種子名稱) varchar (主)
 pprice:成品販售價錢 int
-pcount:成品數量 int
 penergy:物品所增加的體力 int
 
+warehouse 倉庫
+uid:(因為不同玩家有不同倉庫) varchar
+sid:種子名稱 varchar
+scount:種子數量 int
+pid:成品名稱 varchar
+pcount:成品數量 int
 
-商店裡面會含：seed & product(補充體力)
-倉庫裡面會含：seed & product
+store 商店
+uid:varchar
+sid:種子名稱
+pid:成品名稱
+lid:土地編號
+
