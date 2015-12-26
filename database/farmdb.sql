@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 主機: 127.0.0.1
--- 產生時間： 2015-12-26 09:13:10
+-- 產生時間： 2015-12-26 14:17:05
 -- 伺服器版本: 5.6.26
 -- PHP 版本： 5.6.12
 
@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `land` (
   `lmoney` int(11) NOT NULL,
   `llevel` int(11) NOT NULL DEFAULT '1',
   `lstatus` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- 資料表的匯出資料 `land`
@@ -60,7 +60,14 @@ INSERT INTO `land` (`farmid`, `uid`, `lid`, `lmoney`, `llevel`, `lstatus`) VALUE
 (18, 'cat', 4, 0, 1, 0),
 (19, 'cat', 5, 5000, 2, 1),
 (20, 'cat', 6, 5000, 2, 1),
-(21, 'cat', 7, 5000, 2, 1);
+(21, 'cat', 7, 5000, 2, 1),
+(22, 'a', 1, 0, 1, 0),
+(23, 'a', 2, 0, 1, 0),
+(24, 'a', 3, 0, 1, 0),
+(25, 'a', 4, 0, 1, 0),
+(26, 'a', 5, 5000, 2, 1),
+(27, 'a', 6, 5000, 2, 1),
+(28, 'a', 7, 5000, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -79,7 +86,11 @@ CREATE TABLE IF NOT EXISTS `product` (
 --
 
 INSERT INTO `product` (`pid`, `pprice`, `penergy`) VALUES
-('tomato', 100, 5);
+('beetroot', 120, 8),
+('carrot', 150, 5),
+('eggplant', 200, 10),
+('tomato', 100, 5),
+('yellowbean', 250, 15);
 
 -- --------------------------------------------------------
 
@@ -101,7 +112,11 @@ CREATE TABLE IF NOT EXISTS `seed` (
 --
 
 INSERT INTO `seed` (`sid`, `sprice`, `stime`, `sexp`, `senergy`, `slevel`) VALUES
-('tomato', 100, '00:01:00', 20, 2, 1);
+('beetroot', 120, '00:02:00', 15, 5, 1),
+('carrot', 150, '00:03:00', 10, 4, 1),
+('eggplant', 200, '00:05:00', 20, 10, 2),
+('tomato', 100, '00:01:00', 5, 2, 1),
+('yellowbean', 250, '00:06:00', 25, 9, 3);
 
 -- --------------------------------------------------------
 
@@ -139,6 +154,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 
 INSERT INTO `user` (`uid`, `pwd`, `uname`, `uexp`, `ulevel`, `uenergy`, `umoney`, `ucount`, `ulogtime`) VALUES
+('a', '123', 'a', 0, 1, 10, 1000, 2, '0000-00-00 00:00:00'),
 ('cat', '123', 'cat', 0, 1, 10, 1000, 2, '0000-00-00 00:00:00'),
 ('jack', '123', 'Jack', 0, 1, 10, 1000, 1, '0000-00-00 00:00:00'),
 ('sheng', '123', 'Sheng', 0, 1, 10, 1000, 4, '0000-00-00 00:00:00');
@@ -156,6 +172,17 @@ CREATE TABLE IF NOT EXISTS `warehouse` (
   `pid` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
   `pcount` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- 資料表的匯出資料 `warehouse`
+--
+
+INSERT INTO `warehouse` (`uid`, `sid`, `scount`, `pid`, `pcount`) VALUES
+('a', 'tomato', 1, 'tomato', 0),
+('a', 'beetroot', 1, 'beetroot', 0),
+('a', 'carrot', 1, 'carrot', 0),
+('a', 'eggplant', 1, 'eggplant', 0),
+('a', 'yellowbean', 1, 'yellowbean', 0);
 
 --
 -- 已匯出資料表的索引
@@ -193,7 +220,7 @@ ALTER TABLE `user`
 -- 使用資料表 AUTO_INCREMENT `land`
 --
 ALTER TABLE `land`
-  MODIFY `farmid` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=22;
+  MODIFY `farmid` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=29;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
