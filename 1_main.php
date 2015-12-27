@@ -135,43 +135,43 @@ table {
     while ($rs1=mysqli_fetch_array($results1)) { 
         //land1  
         if(($rs1['lid']%7==1)&&($rs1['lstatus']==0)) //第一塊地且狀態為可種植
-            echo "<img id=\"land1\" src=\"img\land.png\">";
+            echo "<a href='selectseed.php?glid=",$rs1['lid'] ,"'><img id=\"land1\" src=\"img\land.png\"></a>";
         if(($rs1['lid']%7==1)&&($rs1['lstatus']==2)) //第一塊地且狀態為種植中
             echo "<img id=\"land1\" src=\"img\grow.png\">";
         //land2
         if(($rs1['lid']%7==2)&&($rs1['lstatus']==0)) //第二塊地且狀態為可種植
-            echo "<img id=\"land2\" src=\"img\land.png\">";
+            echo "<a href='selectseed.php?glid=",$rs1['lid'] ,"'><img id=\"land2\" src=\"img\land.png\"></a>";
         if(($rs1['lid']%7==2)&&($rs1['lstatus']==2)) //第二塊地且狀態為種植中
             echo "<img id=\"land2\" src=\"img\grow.png\">";
         //land3
         if(($rs1['lid']%7==3)&&($rs1['lstatus']==0)) //第三塊地且狀態為可種植
-            echo "<img id=\"land3\" src=\"img\land.png\">";
+            echo "<a href='selectseed.php?glid=",$rs1['lid'] ,"'><img id=\"land3\" src=\"img\land.png\"></a>";
         if(($rs1['lid']%7==3)&&($rs1['lstatus']==2)) //第三塊地且狀態為種植中
             echo "<img id=\"land3\" src=\"img\grow.png\">";
         //land4
         if(($rs1['lid']%7==4)&&($rs1['lstatus']==0)) //第四塊地且狀態為可種植
-            echo "<img id=\"land4\" src=\"img\land.png\">";
+            echo "<a href='selectseed.php?glid=",$rs1['lid'] ,"'><img id=\"land4\" src=\"img\land.png\"></a>";
         if(($rs1['lid']%7==4)&&($rs1['lstatus']==2)) //第四塊地且狀態為種植中
             echo "<img id=\"land4\" src=\"img\grow.png\">";
         //land5
         if(($rs1['lid']%7==5)&&($rs1['lstatus']==1)) //第五塊地且狀態為未解鎖
             echo "<img id=\"land5\" src=\"img\gland.png\">";
         if(($rs1['lid']%7==5)&&($rs1['lstatus']==0)) //第五塊地且狀態為可種植
-            echo "<img id=\"land5\" src=\"img\land.png\">";
+            echo "<a href='selectseed.php?glid=",$rs1['lid'] ,"'><img id=\"land5\" src=\"img\land.png\"></a>";
         if(($rs1['lid']%7==5)&&($rs1['lstatus']==2)) //第五塊地且狀態為種植中
             echo "<img id=\"land5\" src=\"img\grow.png\">";
         //land6
         if(($rs1['lid']%7==6)&&($rs1['lstatus']==1)) //第六塊地且狀態為未解鎖
             echo "<img id=\"land6\" src=\"img\gland.png\">";
         if(($rs1['lid']%7==6)&&($rs1['lstatus']==0)) //第六塊地且狀態為可種植
-            echo "<img id=\"land6\" src=\"img\land.png\">";
+            echo "<a href='selectseed.php?glid=",$rs1['lid'] ,"'><img id=\"land6\" src=\"img\land.png\">";
         if(($rs1['lid']%7==6)&&($rs1['lstatus']==2)) //第六塊地且狀態為種植中
             echo "<img id=\"land6\" src=\"img\grow.png\">";
         //land7
         if(($rs1['lid']%7==0)&&($rs1['lstatus']==1)) //第七塊地且狀態為未解鎖
             echo "<img id=\"land7\" src=\"img\gland.png\">";
         if(($rs1['lid']%7==0)&&($rs1['lstatus']==0)) //第七塊地且狀態為可種植
-            echo "<img id=\"land7\" src=\"img\land.png\">";
+            echo "<a href='selectseed.php?glid=",$rs1['lid'] ,"'><img id=\"land7\" src=\"img\land.png\"></a>";
         if(($rs1['lid']%7==0)&&($rs1['lstatus']==2)) //第七塊地且狀態為種植中
             echo "<img id=\"land7\" src=\"img\grow.png\">";
 
