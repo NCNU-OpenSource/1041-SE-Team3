@@ -1,3 +1,4 @@
+<!--選單CSS還沒調好-->
 <?php
 include"config.php";
 $id=$_SESSION['uid'];
@@ -8,6 +9,9 @@ $_SESSION['glid']=$lid;
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <title>Happy Farm</title>
 <style type="text/css">
 
@@ -44,7 +48,7 @@ table {
     width: 5%;
     height: 10%;
     top: 30px;
-    left: 270px;
+    left: 310px;
 }
 #shop{
     position: absolute;
@@ -86,6 +90,29 @@ table {
     top: 240px;
     left: 580px;
 }
+.progress1{
+    position: absolute;
+    width: 100px;
+    height: 20px;
+    top: 40px;
+    left: 190px;
+}
+.progress2{
+    position: absolute;
+    width: 100px;
+    height: 20px;
+    top: 70px;
+    left: 190px;
+}
+
+#table1{
+    background-color: pink;
+    position: absolute;
+    width: 300px;
+    height: 150px;
+    top:70px;
+    left: 280px;
+}
 }
 
 </style>
@@ -94,27 +121,81 @@ table {
 <div id="frame">
 <img id="farm0" src="img\main.jpg" />
 
-<table> 
+<table>
+    <?php
+        //1.印出玩家資訊
+        $sql = "select * from user where uid='$id';";
+        $results=mysqli_query($conn,$sql);
+    
+        //1.1玩家等級顯示圖片
+        while ($rs=mysqli_fetch_array($results)) {    
+            if($rs['ulevel']==1){
+                echo "<tr><td rowspan='3'><img src=\"img\lv1.png\"></td>";
+            }
+            if($rs['ulevel']==2){
+                echo "<tr><td rowspan='3'><img src=\"img\lv2.png\"></td>";
+            }
+            if($rs['ulevel']==3){
+                echo "<tr><td rowspan='3'><img src=\"img\lv3.png\"></td>";
+            }
+            if($rs['ulevel']==4){
+                echo "<tr><td rowspan='3'><img src=\"img\lv4.png\"></td>";
+            }
+            if($rs['ulevel']==5){
+                echo "<tr><td rowspan='3'><img src=\"img\lv5.png\"></td>";
+            }
+        
+            $process = 100*($rs['uexp']/(100*$rs['ulevel']));
+            $engprocess = 10*$rs['uenergy'];
+
+            echo "<td>" , $rs['uname'] ,
+                "</td><td>" , "<font color='#5E610B';>$</font>",$rs['umoney'],
+                "</td></tr>" ,
+                "<tr><td>" ,"<font color='#0489B1';>Exp</font>",
+                "</td><td>"," ",
+                "</td></tr>",
+                "<tr><td>" ,"<font color='RED';>Energy</font>",
+                "</td><td>"," ",
+                "</td></tr>";
+
+            echo "<div class=\"progress1\">",
+                "<div class=\"progress\">",
+                "<div class=\"progress-bar progress-bar-info progress-bar-striped active\" role=\"progressbar\" aria-valuenow=\"$process\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width:$process%;\">",
+                $rs['uexp']," / ",100*$rs['ulevel'],"</div></div></div>";
+
+            echo "<div class=\"progress2\">",
+                "<div class=\"progress\">",
+                "<div class=\"progress-bar progress-bar-danger progress-bar-striped active\" role=\"progressbar\" aria-valuenow=\"$engprocess\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width:$engprocess%; \">",
+                $rs['uenergy']," / ","10","</div></div></div>";
+
+        }
+
+    ?>
+</table>
+
+<table id="table1"> 
   
 <?php
+
+    //選種子
     $sql = "select * from warehouse where uid='$id';";
     $results=mysqli_query($conn,$sql);
     
     while ($rs=mysqli_fetch_array($results)) {    
         if($rs['sid']=='tomato'&&$rs['scount']!=0){
-            echo "=<td><a href='grow.php?gsid=",$rs['sid'] ,"'><img src=\"img\stomato.png\"></a>",$rs['scount'],"</td>";
+            echo "<td><a href='alert.php?gsid=",$rs['sid'] ,"'><img src=\"img\stomato.png\" style=\"width:100px; height:100px;\" ></a>",$rs['scount'],"</td>";
         }
         if($rs['sid']=='beetroot'&&$rs['scount']!=0){
-            echo "<td><a href='grow.php?gsid=",$rs['sid'] ,"'><img src=\"img\sbeetroot.png\"></a>",$rs['scount'],"</td>";
+            echo "<td><a href='alert.php?gsid=",$rs['sid'] ,"'><img src=\"img\sbeetroot.png\" style=\"width:100px; height:100px;\"></a>",$rs['scount'],"</td>";
         }
         if($rs['sid']=='carrot'&&$rs['scount']!=0){
-            echo "<td><a href='grow.php?gsid=",$rs['sid'] ,"'><img src=\"img\scarrot.png\"></a>",$rs['scount'],"</td>";
+            echo "<td><a href='alert.php?gsid=",$rs['sid'] ,"'><img src=\"img\scarrot.png\" style=\"width:100px; height:100px;\"></a>",$rs['scount'],"</td>";
         }
         if($rs['sid']=='eggplant'&&$rs['scount']!=0){
-            echo "<td><a href='grow.php?gsid=",$rs['sid'] ,"'><img src=\"img\seggplant.png\"></a>",$rs['scount'],"</td>";
+            echo "<td><a href='alert.php?gsid=",$rs['sid'] ,"'><img src=\"img\seggplant.png\" style=\"width:100px; height:100px;\"></a>",$rs['scount'],"</td>";
         }
         if($rs['sid']=='yellowbean'&&$rs['scount']!=0){
-            echo "<td><a href='grow.php?gsid=",$rs['sid'] ,"'><img src=\"img\syellowbean.png\"></a>",$rs['scount'],"</td";
+            echo "<td><a href='alert.php?gsid=",$rs['sid'] ,"'><img src=\"img\syellowbean.png\" style=\"width:100px; height:100px;\"></a>",$rs['scount'],"</td";
         }
     }
 	
