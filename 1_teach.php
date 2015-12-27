@@ -1,4 +1,3 @@
-<!--problem:slider位置還沒調好-->
 <?php
 include"config.php";
 $id=$_SESSION['uid'];
@@ -9,6 +8,8 @@ $id=$_SESSION['uid'];
 <meta charset="UTF-8">
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js"></script>
 <script type="text/javascript" src="jQuery/jquery.cycle.lite.js"></script>
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <title>Happy Farm</title>
 <script type="text/javascript">
     jQuery(document).ready(function($) {   
@@ -49,7 +50,7 @@ table {
     width: 5%;
     height: 10%;
     top: 30px;
-    left: 270px;
+    left: 310px;
 }
 #warehouse{
     position: absolute;
@@ -102,6 +103,7 @@ table {
     left: 580px;
 }
 #slider{
+    position: absolute;
 	clear: both;
 	width: 600px;
 	padding: 0;
@@ -109,8 +111,8 @@ table {
 	z-index: 0;
 	clear: both;
 	display: block;
-	top:340px;
-	left: 40px;
+	top: 150px;
+	left: 220px;
 }
 
 .show1{
@@ -163,6 +165,20 @@ table {
 	top: 0;
 	left: 0;
 }
+.progress1{
+    position: absolute;
+    width: 100px;
+    height: 20px;
+    top: 40px;
+    left: 190px;
+}
+.progress2{
+    position: absolute;
+    width: 100px;
+    height: 20px;
+    top: 70px;
+    left: 190px;
+}
 }
 
 </style>
@@ -183,15 +199,28 @@ table {
         if($rs['ulevel']==1){
             echo "<tr><td rowspan='3'><img src=\"img\lv1.png\"></td>";
         }
+        $process = 100*($rs['uexp']/(100*$rs['ulevel']));
+        $engprocess = 10*$rs['uenergy'];
+
         echo "<td>" , $rs['uname'] ,
-	         "</td><td>" , "$",$rs['umoney'],
-	         "</td></tr>" ,
-	         "<tr><td>" ,"Exp",
-	         "</td><td>",$rs['uexp']," / ",100*$rs['ulevel'],
-	         "</td></tr>",
-	         "<tr><td>" ,"Energy",
-	         "</td><td>",$rs['uenergy']," / ","10",
-	         "</td></tr>";
+             "</td><td>" , "<font color='#5E610B';>$</font>",$rs['umoney'],
+             "</td></tr>" ,
+             "<tr><td>" ,"<font color='#0489B1';>Exp</font>",
+             "</td><td>"," ",
+             "</td></tr>",
+             "<tr><td>" ,"<font color='RED';>Energy</font>",
+             "</td><td>"," ",
+             "</td></tr>";
+
+        echo "<div class=\"progress1\">",
+             "<div class=\"progress\">",
+             "<div class=\"progress-bar progress-bar-info progress-bar-striped active\" role=\"progressbar\" aria-valuenow=\"$process\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width:$process%;\">",
+             $rs['uexp']," / ",100*$rs['ulevel'],"</div></div></div>";
+
+        echo "<div class=\"progress2\">",
+             "<div class=\"progress\">",
+             "<div class=\"progress-bar progress-bar-danger progress-bar-striped active\" role=\"progressbar\" aria-valuenow=\"$engprocess\" aria-valuemin=\"0\" aria-valuemax=\"10\" style=\"width:$engprocess%; \">",
+             $rs['uenergy']," / ","10","</div></div></div>";
     }
 
     //印出土地狀態
@@ -233,7 +262,6 @@ table {
 <a href="0_logout.php"><img id="exit" src="img\exit.png"></a>
 
 
-</div>
 <div id="slider">
     <div class="show1"></div>
     <div class="show2"></div>
@@ -243,5 +271,7 @@ table {
     <div class="show6"></div>
 </div>
 <embed src="music/happy.mp3" autostart="true" hidden="true" loop="true">
+
+</div>
 </body>
 </html>
