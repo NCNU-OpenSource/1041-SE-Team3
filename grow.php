@@ -2,7 +2,7 @@
 include"config.php";
 $id=$_SESSION['uid'];
 $lid=$_SESSION['glid'];
-$sid=$_GET['gsid'];
+$sid=$_SESSION['gsid'];
 
 $sql = "select * from seed where `sid`='$sid';";
 $results = mysqli_query($conn,$sql);
