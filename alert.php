@@ -249,7 +249,7 @@ table {
             ?>
         <br/><br/><br/>
         <p>
-        <a class="btn btn-danger" href="grow.php">確定</a>&nbsp;&nbsp;&nbsp;<a class="btn btn-danger" href="1_main.php">返回</a>
+        <a class="btn btn-danger" href="checkseed.php">確定</a>&nbsp;&nbsp;&nbsp;<a class="btn btn-danger" href="1_main.php">返回</a>
         </p>
         </div>
     </div>
