@@ -18,7 +18,7 @@ while($rs1=mysqli_fetch_array($result1)){
 }
 
 if($uenergy < $senergy)
-	echo "體力不足，無法種植。<a href='1_main.php'>返回</a>";
+	header("Location:energy_alert.php");
 else{
 	$sql1 = "update land set `lstatus`=2, `ltime`='$stime' where `lid`='$lid' and `uid`='$id';";
 	mysqli_query($conn,$sql1);
