@@ -1,4 +1,3 @@
-<!--選單CSS還沒調好-->
 <?php
 include"config.php";
 $id=$_SESSION['uid'];
@@ -12,7 +11,20 @@ $_SESSION['glid']=$lid;
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+<link rel="stylesheet" type="text/css" href="jQuery/jquery.dbpas.carousel.css" />
+<script src="jQuery/jquery.dbpas.carousel.js"></script>
 <title>Happy Farm</title>
+<script>
+      $(document).ready(function() {
+         $('#seed').dbpasCarousel({
+            itemsVisible:2,
+            autoSlide: 1});
+        });
+</script>
+
+
+
 <style type="text/css">
 
 #frame {
@@ -105,14 +117,25 @@ table {
     left: 190px;
 }
 
-#table1{
-    background-color: pink;
+#cancel{
     position: absolute;
-    width: 300px;
-    height: 150px;
-    top:70px;
-    left: 280px;
+    top: 170px;
+    left: 590px;
+    z-index:2;
 }
+
+#select{
+    background-color: #FFBF00;
+    position: absolute;
+    width: 285px;
+    height: 120px;
+    top: 170px;
+    left: 330px;
+    border-radius:10px;
+    z-index:1;
+}
+
+
 }
 
 </style>
@@ -120,7 +143,7 @@ table {
 <body>
 <div id="frame">
 <img id="farm0" src="img\main.jpg" />
-
+<a href="1_main.php"><img id="cancel" src="img\cancel.png" style="width:20px; height:20px;"/>
 <table>
     <?php
         //1.印出玩家資訊
@@ -173,7 +196,8 @@ table {
     ?>
 </table>
 
-<table id="table1"> 
+<div id="select">
+    <ul id="seed">
   
 <?php
 
@@ -182,23 +206,23 @@ table {
     $results=mysqli_query($conn,$sql);
     
     while ($rs=mysqli_fetch_array($results)) {    
-        if($rs['sid']=='tomato'&&$rs['scount']!=0){
-            echo "<td><a href='alert.php?gsid=",$rs['sid'] ,"'><img src=\"img\stomato.png\" style=\"width:100px; height:100px;\" ></a>",$rs['scount'],"</td>";
+        if($rs['sid']=='tomato'){
+            echo "<li><a href='alert.php?gsid=",$rs['sid'] ,"'><img src=\"img\stomato.png\"  style=\"width:100px; height:100px;\" ></a></li>";
         }
-        if($rs['sid']=='beetroot'&&$rs['scount']!=0){
-            echo "<td><a href='alert.php?gsid=",$rs['sid'] ,"'><img src=\"img\sbeetroot.png\" style=\"width:100px; height:100px;\"></a>",$rs['scount'],"</td>";
-        }
-        if($rs['sid']=='carrot'&&$rs['scount']!=0){
-            echo "<td><a href='alert.php?gsid=",$rs['sid'] ,"'><img src=\"img\scarrot.png\" style=\"width:100px; height:100px;\"></a>",$rs['scount'],"</td>";
-        }
-        if($rs['sid']=='eggplant'&&$rs['scount']!=0){
-            echo "<td><a href='alert.php?gsid=",$rs['sid'] ,"'><img src=\"img\seggplant.png\" style=\"width:100px; height:100px;\"></a>",$rs['scount'],"</td>";
-        }
-        if($rs['sid']=='yellowbean'&&$rs['scount']!=0){
-            echo "<td><a href='alert.php?gsid=",$rs['sid'] ,"'><img src=\"img\syellowbean.png\" style=\"width:100px; height:100px;\"></a>",$rs['scount'],"</td";
-        }
+        if($rs['sid']=='beetroot'){
+            echo "<li><a href='alert.php?gsid=",$rs['sid'] ,"'><img src=\"img\sbeetroot.png\"  style=\"width:100px; height:100px;\" ></a></li>";        }
+        if($rs['sid']=='carrot'){
+            echo "<li><a href='alert.php?gsid=",$rs['sid'] ,"'><img src=\"img\scarrot.png\"  style=\"width:100px; height:100px;\" ></a></li>";        }
+        if($rs['sid']=='eggplant'){
+            echo "<li><a href='alert.php?gsid=",$rs['sid'] ,"'><img src=\"img\seggplant.png\"  style=\"width:100px; height:100px;\" ></a></li>";        }
+        if($rs['sid']=='yellowbean'){
+            echo "<li><a href='alert.php?gsid=",$rs['sid'] ,"'><img src=\"img\syellowbean.png\"  style=\"width:100px; height:100px;\" ></a></li>";        }
     }
-	
+?>
+</ul>
+</div>
+
+<?php	
     //印出土地狀態
     $sql1 = "select * from land where uid='$id';";
     $results1=mysqli_query($conn,$sql1);
@@ -246,13 +270,19 @@ table {
         if(($rs1['lid']%7==0)&&($rs1['lstatus']==2)) //第七塊地且狀態為種植中
             echo "<img id=\"land7\" src=\"img\grow.png\">";
     }
- ?>
-</table>
+?>
+
 <a href="2_warehouse.php"><img id="warehouse" src="img\warehouse.png"></a>
 <a href="2_shop.php"><img id="shop" src="img\shop.png"></a>
 <a href="0_logout.php"><img id="exit" src="img\exit.png"></a>
 
+
 </div>
 <embed src="music/happy.mp3" autostart="true" hidden="true" loop="true">
+
+
+
+
+
 </body>
 </html>
