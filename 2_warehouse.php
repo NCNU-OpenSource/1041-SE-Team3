@@ -78,7 +78,7 @@ td {
 <tr><td><img src='img\tomato.png' width='115' height='110'></td>
 <td width=80px><select name="tomato">
 	<?php //tomato滾輪
-		$sql = "select * from warehouse where pid = 'tomato' ;";
+		$sql = "select * from warehouse where uid='$id' and pid = 'tomato' ;";
 		$results=mysqli_query($conn,$sql);
 		$row = mysqli_fetch_assoc($results);
 		for($i=0;$i<=$row['pcount'];$i++){
@@ -89,7 +89,7 @@ td {
 <td><img src='img\eggplant.png' width='95' height='95'></td>
 <td width=80px><select name="eggplant">
 	<?php //eggplant滾輪
-		$sql = "select * from warehouse where pid = 'eggplant' ;";
+		$sql = "select * from warehouse where uid='$id' and pid = 'eggplant' ;";
 		$results=mysqli_query($conn,$sql);
 		$row = mysqli_fetch_assoc($results);
 		for($i=0;$i<=$row['pcount'];$i++){
@@ -100,7 +100,7 @@ td {
 <td><img src='img\carrot.png' width='95' height='95'></td>
 <td width=80px><select name="carrot">
 	<?php //carrot滾輪
-		$sql = "select * from warehouse where pid = 'carrot' ;";
+		$sql = "select * from warehouse where uid='$id' and pid = 'carrot' ;";
 		$results=mysqli_query($conn,$sql);
 		$row = mysqli_fetch_assoc($results);
 		for($i=0;$i<=$row['pcount'];$i++){
