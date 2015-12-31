@@ -85,6 +85,10 @@ h1{
 	left:410px;
 	color:white;
 }
+#cancel{
+    position: absolute;
+    top: 30px;
+    left: 860px;
 }
 </style>
 </head>
@@ -93,6 +97,7 @@ h1{
 <a href="1_main.php"><img src="img\dark.png" /></a>
 <img id="menu" src="img\warehouse_product.png" />
 <h1>確認出售</h1>
+<a href="1_main.php"><img id="cancel" src="img\cancel.png" /></a>
 <a href="2_warehouse_seed.php"><p id="seed">種子</p></a>
 <a href="2_warehouse.php" ><p id="product">成品</p></a>
 <form method="post" action="warehouse_sell.php">
@@ -129,7 +134,7 @@ h1{
 <td><img src='img\yellowbean.png' width='95' height='95'></td>
 <td id='border' width=80px><?php echo $_SESSION['yellowbean'] ?> unit</td>
 <td><a href="warehouse_com.php" > <img src='img\sell.png' width='95' height='95'></td>
-<td><a href="2_warehouse.php" > <img src='img\RETURNS.png' width='75' height='75'></td>
+<td><a href="1_main.php" > <img src='img\cancel.png' width='75' height='75'></td>
 <tr>
 <?php //獲得beetroot&yellowbean的價格
 	$sql = "select * from product where pid = 'beetroot' ;";
@@ -147,6 +152,7 @@ h1{
  echo "<td id='border'>total :$$total</td>";
 	$_SESSION['total']=$total;
 ?>
-
+</div>
+<embed src="music/happy.mp3" autostart="true" hidden="true" loop="true">
 </body>
 </html>
