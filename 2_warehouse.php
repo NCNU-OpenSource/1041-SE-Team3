@@ -59,7 +59,10 @@ $j=0;
 td {
     text-align: center;
 }
-
+#cancel{
+    position: absolute;
+    top: 30px;
+    left: 860px;
 }
 </style>
 </head>
@@ -67,6 +70,7 @@ td {
 <div id="frame">
 <a href="1_main.php"><img src="img\dark.png" /></a>
 <img id="menu" src="img\warehouse_product.png" />
+<a href="1_main.php"><img id="cancel" src="img\cancel.png"/></a>
 <a href="2_warehouse_seed.php"><p id="seed">種子</p></a>
 <a href="2_warehouse.php" ><p id="product">成品</p></a>
 <form method="post" action="warehouse_sell.php">
@@ -159,5 +163,6 @@ td {
 </table>
 </form>
 </div>
+<embed src="music/happy.mp3" autostart="true" hidden="true" loop="true">
 </body>
 </html>
