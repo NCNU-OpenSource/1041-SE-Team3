@@ -124,7 +124,7 @@ table {
     z-index:2;
 }
 
-#select{
+#landstatus{
     background-color: #FFBF00;
     position: absolute;
     width: 285px;
@@ -196,7 +196,7 @@ table {
     ?>
 </table>
 
-<div id="select">
+<div id="landstatus">
     <ul id="seed">
   
 <?php
@@ -233,21 +233,29 @@ table {
             echo "<img id=\"land1\" src=\"img\land.png\"></a>";
         if(($rs1['lid']%7==1)&&($rs1['lstatus']==2)) //第一塊地且狀態為種植中
             echo "<img id=\"land1\" src=\"img\grow.png\">";
+		if(($rs1['lid']%7==1)&&($rs1['lstatus']==3)) //第一塊地且狀態為種植完成
+            echo "<img id=\"land1\" src=\"img\p",$rs1['sid'],".png\">";
         //land2
         if(($rs1['lid']%7==2)&&($rs1['lstatus']==0)) //第二塊地且狀態為可種植
             echo "<img id=\"land2\" src=\"img\land.png\"></a>";
         if(($rs1['lid']%7==2)&&($rs1['lstatus']==2)) //第二塊地且狀態為種植中
             echo "<img id=\"land2\" src=\"img\grow.png\">";
+		if(($rs1['lid']%7==2)&&($rs1['lstatus']==3)) //第二塊地且狀態為種植完成
+            echo "<img id=\"land2\" src=\"img\p",$rs1['sid'],".png\">";
         //land3
         if(($rs1['lid']%7==3)&&($rs1['lstatus']==0)) //第三塊地且狀態為可種植
             echo "<img id=\"land3\" src=\"img\land.png\"></a>";
         if(($rs1['lid']%7==3)&&($rs1['lstatus']==2)) //第三塊地且狀態為種植中
             echo "<img id=\"land3\" src=\"img\grow.png\">";
+		if(($rs1['lid']%7==3)&&($rs1['lstatus']==3)) //第三塊地且狀態為種植完成
+            echo "<img id=\"land3\" src=\"img\p",$rs1['sid'],".png\">";
         //land4
         if(($rs1['lid']%7==4)&&($rs1['lstatus']==0)) //第四塊地且狀態為可種植
             echo "<img id=\"land4\" src=\"img\land.png\"></a>";
         if(($rs1['lid']%7==4)&&($rs1['lstatus']==2)) //第四塊地且狀態為種植中
             echo "<img id=\"land4\" src=\"img\grow.png\">";
+		if(($rs1['lid']%7==4)&&($rs1['lstatus']==3)) //第四塊地且狀態為種植完成
+            echo "<img id=\"land4\" src=\"img\p",$rs1['sid'],".png\">";
         //land5
         if(($rs1['lid']%7==5)&&($rs1['lstatus']==1)) //第五塊地且狀態為未解鎖
             echo "<img id=\"land5\" src=\"img\gland.png\">";
@@ -255,6 +263,8 @@ table {
             echo "<img id=\"land5\" src=\"img\land.png\"></a>";
         if(($rs1['lid']%7==5)&&($rs1['lstatus']==2)) //第五塊地且狀態為種植中
             echo "<img id=\"land5\" src=\"img\grow.png\">";
+		if(($rs1['lid']%7==5)&&($rs1['lstatus']==3)) //第五塊地且狀態為種植完成
+            echo "<img id=\"land5\" src=\"img\p",$rs1['sid'],".png\">";
         //land6
         if(($rs1['lid']%7==6)&&($rs1['lstatus']==1)) //第六塊地且狀態為未解鎖
             echo "<img id=\"land6\" src=\"img\gland.png\">";
@@ -262,6 +272,8 @@ table {
             echo "<img id=\"land6\" src=\"img\land.png\">";
         if(($rs1['lid']%7==6)&&($rs1['lstatus']==2)) //第六塊地且狀態為種植中
             echo "<img id=\"land6\" src=\"img\grow.png\">";
+		if(($rs1['lid']%7==6)&&($rs1['lstatus']==3)) //第六塊地且狀態為種植完成
+            echo "<img id=\"land6\" src=\"img\p",$rs1['sid'],".png\">";
         //land7
         if(($rs1['lid']%7==0)&&($rs1['lstatus']==1)) //第七塊地且狀態為未解鎖
             echo "<img id=\"land7\" src=\"img\gland.png\">";
@@ -269,6 +281,8 @@ table {
             echo "<img id=\"land7\" src=\"img\land.png\"></a>";
         if(($rs1['lid']%7==0)&&($rs1['lstatus']==2)) //第七塊地且狀態為種植中
             echo "<img id=\"land7\" src=\"img\grow.png\">";
+		if(($rs1['lid']%7==0)&&($rs1['lstatus']==3)) //第七塊地且狀態為種植完成
+            echo "<img id=\"land7\" src=\"img\p",$rs1['sid'],".png\">";
     }
 ?>
 
