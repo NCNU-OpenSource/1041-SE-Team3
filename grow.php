@@ -3,24 +3,25 @@ include"config.php";
 $id=$_SESSION['uid'];
 $lid=$_SESSION['glid'];
 $sid=$_SESSION['gsid'];
-
+$nowtime=time();
 $sql = "select * from seed where `sid`='$sid';";
 $results = mysqli_query($conn,$sql);
 while($rs=mysqli_fetch_array($results)){
 	$sexp = $rs['sexp'];
 	$senergy = $rs['senergy'];
 	$stime = $rs['stime'];
+	$parsed = date_parse($stime);
+	$ftime = $parsed['hour'] * 3600 + $parsed['minute'] * 60 + $parsed['second'] + $nowtime;
 }
 $sql4 = "select * from user where `uid`='$id';";
 $result1 = mysqli_query($conn,$sql4);
 while($rs1=mysqli_fetch_array($result1)){
 	$uenergy = $rs1['uenergy'];
 }
-
 if($uenergy < $senergy)
 	header("Location:energy_alert.php");
 else{
-	$sql1 = "update land set `lstatus`=2, `ltime`='$stime' where `lid`='$lid' and `uid`='$id';";
+	$sql1 = "update land set `lstatus`=2,`ltime`='$ftime',`sid`='$sid' where `lid`='$lid' and `uid`='$id';";
 	mysqli_query($conn,$sql1);
 	
 	$sql2 = "update warehouse set scount=scount-1 where `uid`='$id' and `sid`='$sid';";
