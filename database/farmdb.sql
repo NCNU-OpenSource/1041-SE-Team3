@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 主機: 127.0.0.1
--- 產生時間： 2015 �?12 ??27 ??14:26
+-- 產生時間： 2016 �?01 ??03 ??01:54
 -- 伺服器版本: 5.6.24
 -- PHP 版本： 5.6.8
 
@@ -33,49 +33,50 @@ CREATE TABLE IF NOT EXISTS `land` (
   `lmoney` int(11) NOT NULL,
   `llevel` int(11) NOT NULL DEFAULT '1',
   `lstatus` int(11) NOT NULL,
-  `ltime` time DEFAULT NULL
+  `ltime` int(11) DEFAULT NULL,
+  `sid` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- 資料表的匯出資料 `land`
 --
 
-INSERT INTO `land` (`farmid`, `uid`, `lid`, `lmoney`, `llevel`, `lstatus`, `ltime`) VALUES
-(1, 'sheng', 1, 0, 1, 0, NULL),
-(2, 'sheng', 2, 0, 1, 0, NULL),
-(3, 'sheng', 3, 0, 1, 0, NULL),
-(4, 'sheng', 4, 0, 1, 0, NULL),
-(5, 'sheng', 5, 5000, 2, 1, NULL),
-(6, 'sheng', 6, 5000, 2, 1, NULL),
-(7, 'sheng', 7, 5000, 2, 1, NULL),
-(8, 'jack', 1, 0, 1, 0, NULL),
-(9, 'jack', 2, 0, 1, 0, NULL),
-(10, 'jack', 3, 0, 1, 0, NULL),
-(11, 'jack', 4, 0, 1, 0, NULL),
-(12, 'jack', 5, 5000, 2, 1, NULL),
-(13, 'jack', 6, 5000, 2, 1, NULL),
-(14, 'jack', 7, 5000, 2, 1, NULL),
-(15, 'cat', 1, 0, 1, 0, NULL),
-(16, 'cat', 2, 0, 1, 0, NULL),
-(17, 'cat', 3, 0, 1, 0, NULL),
-(18, 'cat', 4, 0, 1, 0, NULL),
-(19, 'cat', 5, 5000, 2, 1, NULL),
-(20, 'cat', 6, 5000, 2, 1, NULL),
-(21, 'cat', 7, 5000, 2, 1, NULL),
-(22, 'a', 1, 0, 1, 0, NULL),
-(23, 'a', 2, 0, 1, 0, NULL),
-(24, 'a', 3, 0, 1, 0, NULL),
-(25, 'a', 4, 0, 1, 0, NULL),
-(26, 'a', 5, 5000, 2, 1, NULL),
-(27, 'a', 6, 5000, 2, 1, NULL),
-(28, 'a', 7, 5000, 2, 1, NULL),
-(29, 'taco', 1, 0, 1, 0, NULL),
-(30, 'taco', 2, 0, 1, 0, NULL),
-(31, 'taco', 3, 0, 1, 0, NULL),
-(32, 'taco', 4, 0, 1, 0, NULL),
-(33, 'taco', 5, 5000, 2, 1, NULL),
-(34, 'taco', 6, 5000, 2, 1, NULL),
-(35, 'taco', 7, 5000, 2, 1, NULL);
+INSERT INTO `land` (`farmid`, `uid`, `lid`, `lmoney`, `llevel`, `lstatus`, `ltime`, `sid`) VALUES
+(1, 'sheng', 1, 0, 1, 0, NULL, NULL),
+(2, 'sheng', 2, 0, 1, 0, NULL, NULL),
+(3, 'sheng', 3, 0, 1, 0, NULL, NULL),
+(4, 'sheng', 4, 0, 1, 0, NULL, NULL),
+(5, 'sheng', 5, 5000, 2, 1, NULL, NULL),
+(6, 'sheng', 6, 5000, 2, 1, NULL, NULL),
+(7, 'sheng', 7, 5000, 2, 1, NULL, NULL),
+(8, 'jack', 1, 0, 1, 0, NULL, NULL),
+(9, 'jack', 2, 0, 1, 0, NULL, NULL),
+(10, 'jack', 3, 0, 1, 0, NULL, NULL),
+(11, 'jack', 4, 0, 1, 0, NULL, NULL),
+(12, 'jack', 5, 5000, 2, 1, NULL, NULL),
+(13, 'jack', 6, 5000, 2, 1, NULL, NULL),
+(14, 'jack', 7, 5000, 2, 1, NULL, NULL),
+(15, 'cat', 1, 0, 1, 0, NULL, NULL),
+(16, 'cat', 2, 0, 1, 0, NULL, NULL),
+(17, 'cat', 3, 0, 1, 0, NULL, NULL),
+(18, 'cat', 4, 0, 1, 0, NULL, NULL),
+(19, 'cat', 5, 5000, 2, 1, NULL, NULL),
+(20, 'cat', 6, 5000, 2, 1, NULL, NULL),
+(21, 'cat', 7, 5000, 2, 1, NULL, NULL),
+(22, 'a', 1, 0, 1, 0, NULL, NULL),
+(23, 'a', 2, 0, 1, 0, NULL, NULL),
+(24, 'a', 3, 0, 1, 0, NULL, NULL),
+(25, 'a', 4, 0, 1, 0, NULL, NULL),
+(26, 'a', 5, 5000, 2, 1, NULL, NULL),
+(27, 'a', 6, 5000, 2, 1, NULL, NULL),
+(28, 'a', 7, 5000, 2, 1, NULL, NULL),
+(29, 'taco', 1, 0, 1, 0, NULL, NULL),
+(30, 'taco', 2, 0, 1, 0, NULL, NULL),
+(31, 'taco', 3, 0, 1, 0, NULL, NULL),
+(32, 'taco', 4, 0, 1, 0, NULL, NULL),
+(33, 'taco', 5, 5000, 2, 1, NULL, NULL),
+(34, 'taco', 6, 5000, 2, 1, NULL, NULL),
+(35, 'taco', 7, 5000, 2, 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -166,7 +167,7 @@ INSERT INTO `user` (`uid`, `pwd`, `uname`, `uexp`, `ulevel`, `uenergy`, `umoney`
 ('cat', '123', 'cat', 0, 1, 10, 1000, 2, '0000-00-00 00:00:00'),
 ('jack', '123', 'Jack', 0, 1, 10, 1000, 1, '0000-00-00 00:00:00'),
 ('sheng', '123', 'Sheng', 0, 1, 10, 1000, 4, '0000-00-00 00:00:00'),
-('taco', '123', 'Taco', 0, 1, 10, 1000, 7, '0000-00-00 00:00:00');
+('taco', '123', 'Taco', 0, 1, 10, 1000, 23, '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
