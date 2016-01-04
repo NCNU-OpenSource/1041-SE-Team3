@@ -185,7 +185,7 @@ table {
             echo "<a href='selectseed.php?glid=",$rs1['lid'] ,"'><img id=\"land2\" src=\"img\land.png\"></a>";
         if(($rs1['lid']%7==2)&&($rs1['lstatus']==2)){ //第二塊地且狀態為種植中
             echo "<a href='seestatus.php?glid=",$rs1['lid'] ,"'><img id=\"land2\" src=\"img\grow.png\"></a>";
-			$ftime=$rs['ltime'];
+			$ftime=$rs1['ltime'];
 			$time=$ftime-$nowtime;
 			if($time<0){
 				$lid=$rs1['lid'];
@@ -200,7 +200,7 @@ table {
             echo "<a href='selectseed.php?glid=",$rs1['lid'] ,"'><img id=\"land3\" src=\"img\land.png\"></a>";
         if(($rs1['lid']%7==3)&&($rs1['lstatus']==2)){ //第三塊地且狀態為種植中
             echo "<a href='seestatus.php?glid=",$rs1['lid'] ,"'><img id=\"land3\" src=\"img\grow.png\"></a>";
-			$ftime=$rs['ltime'];
+			$ftime=$rs1['ltime'];
 			$time=$ftime-$nowtime;
 			if($time<0){
 				$lid=$rs1['lid'];
@@ -215,7 +215,7 @@ table {
             echo "<a href='selectseed.php?glid=",$rs1['lid'] ,"'><img id=\"land4\" src=\"img\land.png\"></a>";
         if(($rs1['lid']%7==4)&&($rs1['lstatus']==2)){ //第四塊地且狀態為種植中
             echo "<a href='seestatus.php?glid=",$rs1['lid'] ,"'><img id=\"land4\" src=\"img\grow.png\"></a>";
-			$ftime=$rs['ltime'];
+			$ftime=$rs1['ltime'];
 			$time=$ftime-$nowtime;
 			if($time<0){
 				$lid=$rs1['lid'];
@@ -232,7 +232,7 @@ table {
             echo "<a href='selectseed.php?glid=",$rs1['lid'] ,"'><img id=\"land5\" src=\"img\land.png\"></a>";
         if(($rs1['lid']%7==5)&&($rs1['lstatus']==2)){ //第五塊地且狀態為種植中
             echo "<a href='seestatus.php?glid=",$rs1['lid'] ,"'><img id=\"land5\" src=\"img\grow.png\"></a>";
-			$ftime=$rs['ltime'];
+			$ftime=$rs1['ltime'];
 			$time=$ftime-$nowtime;
 			if($time<0){
 				$lid=$rs1['lid'];
@@ -249,7 +249,7 @@ table {
             echo "<a href='selectseed.php?glid=",$rs1['lid'] ,"'><img id=\"land6\" src=\"img\land.png\"></a>";
         if(($rs1['lid']%7==6)&&($rs1['lstatus']==2)){ //第六塊地且狀態為種植中
             echo "<a href='seestatus.php?glid=",$rs1['lid'] ,"'><img id=\"land6\" src=\"img\grow.png\"></a>";
-			$ftime=$rs['ltime'];
+			$ftime=$rs1['ltime'];
 			$time=$ftime-$nowtime;
 			if($time<0){
 				$lid=$rs1['lid'];
@@ -266,7 +266,7 @@ table {
             echo "<a href='selectseed.php?glid=",$rs1['lid'] ,"'><img id=\"land7\" src=\"img\land.png\"></a>";
         if(($rs1['lid']%7==0)&&($rs1['lstatus']==2)){ //第七塊地且狀態為種植中
             echo "<a href='seestatus.php?glid=",$rs1['lid'] ,"'><img id=\"land7\" src=\"img\grow.png\"></a>";
-			$ftime=$rs['ltime'];
+			$ftime=$rs1['ltime'];
 			$time=$ftime-$nowtime;
 			if($time<0){
 				$lid=$rs1['lid'];
