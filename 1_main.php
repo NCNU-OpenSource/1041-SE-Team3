@@ -170,7 +170,7 @@ table {
             echo "<a href='selectseed.php?glid=",$rs1['lid'] ,"'><img id=\"land1\" src=\"img\land.png\"></a>";
         if(($rs1['lid']%7==1)&&($rs1['lstatus']==2)){ //第一塊地且狀態為種植中
             echo "<a href='seestatus.php?glid=",$rs1['lid'] ,"'><img id=\"land1\" src=\"img\grow.png\"></a>";
-			$ftime=$rs['ltime'];
+			$ftime=$rs1['ltime'];
 			$time=$ftime-$nowtime;
 			if($time<0){
 				$lid=$rs1['lid'];
