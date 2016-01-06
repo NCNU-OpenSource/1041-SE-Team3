@@ -1,8 +1,21 @@
 <?php
 include"config.php";
 $id=$_SESSION['uid'];
-$nowtime=time();
+
+//for timer
+    $sqla = "select count(lid) as r from land  where uid='$id' and lstatus=2";
+    $resultsta=mysqli_query($conn,$sqla);
+    $rsa=mysqli_fetch_array($resultsta);
+    $sqltimer = "select lid , land.sid , ltime from land , seed  where uid='$id' and lstatus=2 and land.sid=seed.sid";
+    $resultst=mysqli_query($conn,$sqltimer);
+    while ($rst=mysqli_fetch_array($resultst)) {
+        $lid[]=$rst['lid'];
+        $sid[]=$rst['sid'];
+        $endtime[]=$rst['ltime'];
+    }
+    
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,6 +23,8 @@ $nowtime=time();
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="jQuery/countdown.min.js"></script>
+<link rel="stylesheet" href="css/main.css">
 <title>Happy Farm</title>
 
 <style type="text/css">
@@ -26,86 +41,47 @@ $nowtime=time();
     width:expression(document.body.clientWidth>document.getElementById("frame").scrollWidth*8/10? "100%": "auto" );
     height:auto;
 }
-table { 
+.timer1{
     position: absolute;
-    border:0; 
-    border-collpase:collpase; 
-    width:250px; 
-    top:10px;
-    left: 0px;
-    font-weight: bold;
-    font-family:  Arimo;
-    font-size:20px;
-
-}
-#warehouse{
-    position: absolute;
-    top: 20px;
-    left: 700px;
-}
-#exit{
-    position: absolute;
-    width: 5%;
-    height: 10%;
-    top: 30px;
-    left: 310px;
-}
-#shop{
-    position: absolute;
-    top: 280px;
-    left: 760px;
-}
-#land1{
-    position: absolute;
+    font-size: 36px;
+    font-family: impact;
+    color:#F7D358;
     top: 240px;
     left: 220px;
+    z-index: 5;
 }
-#land2{
-    position: absolute;
-    top: 360px;
-    left: 220px;
-}
-#land3{
-    position: absolute;
-    top: 240px;
-    left: 340px;
-}
-#land4{
-    position: absolute;
-    top: 360px;
-    left: 340px;
-}
-#land5{
-    position: absolute;
-    top: 240px;
-    left: 460px;
-}
-#land6{
-    position: absolute;
-    top: 360px;
-    left: 460px;
-}
-#land7{
-    position: absolute;
-    top: 240px;
-    left: 580px;
-}
-.progress1{
-    position: absolute;
-    width: 100px;
-    height: 20px;
-    top: 40px;
-    left: 190px;
-}
-.progress2{
-    position: absolute;
-    width: 100px;
-    height: 20px;
-    top: 70px;
-    left: 190px;
-}
-
 </style>
+
+
+<script language="javascript">
+
+    function start(){
+        <?php for($i=1;$i<=$rsa['r'];$i++){?>
+            new Countdown({
+                selector: '.timer<?php echo $lid[$i-1];?>',
+                msgBefore: "",
+                msgAfter: "<?php echo "<a href='growok.php?lid=".$lid[$i-1]."'><img src='img/timesup.png'></a>";?>",
+                msgPattern: "{minutes} : {seconds} ",
+                dateStart: new Date(),
+                dateEnd: new Date('<?php echo date("M d, Y H:i:s",$endtime[$i-1])?>'),
+                onStart: function() {
+                    console.log('start');
+                },
+                onEnd: function() { 
+                    console.log('end');
+                },
+            });
+        <?php   };?>
+    };
+
+    window.onload=function(){
+        start();
+    }
+
+
+</script> 
+
+
 </head>
 <body>
 <div id="frame">
@@ -169,125 +145,85 @@ table {
         if(($rs1['lid']%7==1)&&($rs1['lstatus']==0)) //第一塊地且狀態為可種植
             echo "<a href='selectseed.php?glid=",$rs1['lid'] ,"'><img id=\"land1\" src=\"img\land.png\"></a>";
         if(($rs1['lid']%7==1)&&($rs1['lstatus']==2)){ //第一塊地且狀態為種植中
-            echo "<a href='seestatus.php?glid=",$rs1['lid'] ,"'><img id=\"land1\" src=\"img\grow.png\"></a>";
-			$ftime=$rs['ltime'];
-			$time=$ftime-$nowtime;
-			if($time<0){
-				$lid=$rs1['lid'];
-				$sql2 = "update land set `lstatus`=3 where `lid`='$lid' and `uid`='$id';";
-				mysqli_query($conn,$sql2);
-			}
+            echo "<a href='seestatus.php?glid=",$rs1['lid'] ,"'><img id=\"land1\" src=\"img\grow.png\"></a><span class=\"timer1\"></span>";
 		}
-		if(($rs1['lid']%7==1)&&($rs1['lstatus']==3)) //第一塊地且狀態為種植完成
-            echo "<a href='selharvest.php?glid=",$rs1['lid'] ,"'><img id=\"land1\" src=\"img\p",$rs1['sid'],".png\"></a>";
+        if(($rs1['lid']%7==1)&&($rs1['lstatus']==3)) //第一塊地且狀態為種植完成
+          echo "<a href='chooseharvest.php?glid=",$rs1['lid'] ,"'><img id=\"land1\" src=\"img\p",$rs1['sid'],".png\"></a>";
+        
         //land2
         if(($rs1['lid']%7==2)&&($rs1['lstatus']==0)) //第二塊地且狀態為可種植
-            echo "<a href='selectseed.php?glid=",$rs1['lid'] ,"'><img id=\"land2\" src=\"img\land.png\"></a>";
-        if(($rs1['lid']%7==2)&&($rs1['lstatus']==2)){ //第二塊地且狀態為種植中
-            echo "<a href='seestatus.php?glid=",$rs1['lid'] ,"'><img id=\"land2\" src=\"img\grow.png\"></a>";
-			$ftime=$rs['ltime'];
-			$time=$ftime-$nowtime;
-			if($time<0){
-				$lid=$rs1['lid'];
-				$sql2 = "update land set `lstatus`=3 where `lid`='$lid' and `uid`='$id';";
-				mysqli_query($conn,$sql2);
-			}
-		}
+            echo "<a href='selectseed.php?glid=",$rs1['lid'] ,"'><img id=\"land2\"  src=\"img\land.png\"></a>";
+        if(($rs1['lid']%7==2)&&($rs1['lstatus']==2)) //第二塊地且狀態為種植中
+            echo "<a href='seestatus.php?glid=",$rs1['lid'] ,"'><img id=\"land2\" src=\"img\grow.png\"></a><span class=\"timer2\"></span>";
+		
 		if(($rs1['lid']%7==2)&&($rs1['lstatus']==3)) //第二塊地且狀態為種植完成
-            echo "<a href='selharvest.php?glid=",$rs1['lid'] ,"'><img id=\"land2\" src=\"img\p",$rs1['sid'],".png\"></a>";
+            echo "<a href='chooseharvest.php?glid=",$rs1['lid'] ,"'><img id=\"land2\" src=\"img\p",$rs1['sid'],".png\"></a>";
+        
         //land3
         if(($rs1['lid']%7==3)&&($rs1['lstatus']==0)) //第三塊地且狀態為可種植
             echo "<a href='selectseed.php?glid=",$rs1['lid'] ,"'><img id=\"land3\" src=\"img\land.png\"></a>";
-        if(($rs1['lid']%7==3)&&($rs1['lstatus']==2)){ //第三塊地且狀態為種植中
-            echo "<a href='seestatus.php?glid=",$rs1['lid'] ,"'><img id=\"land3\" src=\"img\grow.png\"></a>";
-			$ftime=$rs['ltime'];
-			$time=$ftime-$nowtime;
-			if($time<0){
-				$lid=$rs1['lid'];
-				$sql2 = "update land set `lstatus`=3 where `lid`='$lid' and `uid`='$id';";
-				mysqli_query($conn,$sql2);
-			}
-		}
+        if(($rs1['lid']%7==3)&&($rs1['lstatus']==2)) //第三塊地且狀態為種植中
+            echo "<a href='seestatus.php?glid=",$rs1['lid'] ,"'><img id=\"land3\" src=\"img\grow.png\"></a><span class=\"timer3\"></span>";
 		if(($rs1['lid']%7==3)&&($rs1['lstatus']==3)) //第三塊地且狀態為種植完成
-            echo "<a href='selharvest.php?glid=",$rs1['lid'] ,"'><img id=\"land3\" src=\"img\p",$rs1['sid'],".png\"></a>";
+            echo "<a href='chooseharvest.php?glid=",$rs1['lid'] ,"'><img id=\"land3\" src=\"img\p",$rs1['sid'],".png\"></a>";
+        
         //land4
         if(($rs1['lid']%7==4)&&($rs1['lstatus']==0)) //第四塊地且狀態為可種植
             echo "<a href='selectseed.php?glid=",$rs1['lid'] ,"'><img id=\"land4\" src=\"img\land.png\"></a>";
-        if(($rs1['lid']%7==4)&&($rs1['lstatus']==2)){ //第四塊地且狀態為種植中
-            echo "<a href='seestatus.php?glid=",$rs1['lid'] ,"'><img id=\"land4\" src=\"img\grow.png\"></a>";
-			$ftime=$rs['ltime'];
-			$time=$ftime-$nowtime;
-			if($time<0){
-				$lid=$rs1['lid'];
-				$sql2 = "update land set `lstatus`=3 where `lid`='$lid' and `uid`='$id';";
-				mysqli_query($conn,$sql2);
-			}
-		}
+        if(($rs1['lid']%7==4)&&($rs1['lstatus']==2)) //第四塊地且狀態為種植中
+           echo "<a href='seestatus.php?glid=",$rs1['lid'] ,"'><img id=\"land4\" src=\"img\grow.png\"></a><span class=\"timer4\"></span>";
+		
 		if(($rs1['lid']%7==4)&&($rs1['lstatus']==3)) //第四塊地且狀態為種植完成
-            echo "<a href='selharvest.php?glid=",$rs1['lid'] ,"'><img id=\"land4\" src=\"img\p",$rs1['sid'],".png\"></a>";
+            echo "<a href='chooseharvest.php?glid=",$rs1['lid'] ,"'><img id=\"land4\" src=\"img\p",$rs1['sid'],".png\"></a>";
+        
         //land5
         if(($rs1['lid']%7==5)&&($rs1['lstatus']==1)) //第五塊地且狀態為未解鎖
             echo "<img id=\"land5\" src=\"img\gland.png\">";
         if(($rs1['lid']%7==5)&&($rs1['lstatus']==0)) //第五塊地且狀態為可種植
             echo "<a href='selectseed.php?glid=",$rs1['lid'] ,"'><img id=\"land5\" src=\"img\land.png\"></a>";
         if(($rs1['lid']%7==5)&&($rs1['lstatus']==2)){ //第五塊地且狀態為種植中
-            echo "<a href='seestatus.php?glid=",$rs1['lid'] ,"'><img id=\"land5\" src=\"img\grow.png\"></a>";
-			$ftime=$rs['ltime'];
-			$time=$ftime-$nowtime;
-			if($time<0){
-				$lid=$rs1['lid'];
-				$sql2 = "update land set `lstatus`=3 where `lid`='$lid' and `uid`='$id';";
-				mysqli_query($conn,$sql2);
-			}
+            echo "<a href='seestatus.php?glid=",$rs1['lid'] ,"'><img id=\"land5\" src=\"img\grow.png\"></a><span class=\"timer5\"></span>";
 		}
 		if(($rs1['lid']%7==5)&&($rs1['lstatus']==3)) //第五塊地且狀態為種植完成
-            echo "<a href='selharvest.php?glid=",$rs1['lid'] ,"'><img id=\"land5\" src=\"img\p",$rs1['sid'],".png\"></a>";
+            echo "<a href='chooseharvest.php?glid=",$rs1['lid'] ,"'><img id=\"land5\" src=\"img\p",$rs1['sid'],".png\"></a>";
+        
         //land6
         if(($rs1['lid']%7==6)&&($rs1['lstatus']==1)) //第六塊地且狀態為未解鎖
             echo "<img id=\"land6\" src=\"img\gland.png\">";
         if(($rs1['lid']%7==6)&&($rs1['lstatus']==0)) //第六塊地且狀態為可種植
             echo "<a href='selectseed.php?glid=",$rs1['lid'] ,"'><img id=\"land6\" src=\"img\land.png\"></a>";
-        if(($rs1['lid']%7==6)&&($rs1['lstatus']==2)){ //第六塊地且狀態為種植中
-            echo "<a href='seestatus.php?glid=",$rs1['lid'] ,"'><img id=\"land6\" src=\"img\grow.png\"></a>";
-			$ftime=$rs['ltime'];
-			$time=$ftime-$nowtime;
-			if($time<0){
-				$lid=$rs1['lid'];
-				$sql2 = "update land set `lstatus`=3 where `lid`='$lid' and `uid`='$id';";
-				mysqli_query($conn,$sql2);
-			}
-		}
+        if(($rs1['lid']%7==6)&&($rs1['lstatus']==2)) //第六塊地且狀態為種植中
+            echo "<a href='seestatus.php?glid=",$rs1['lid'] ,"'><img id=\"land6\" src=\"img\grow.png\"><span class=\"timer6\"></span>";
+		
 		if(($rs1['lid']%7==6)&&($rs1['lstatus']==3)) //第六塊地且狀態為種植完成
-            echo "<a href='selharvest.php?glid=",$rs1['lid'] ,"'><img id=\"land6\" src=\"img\p",$rs1['sid'],".png\"></a>";
+            echo "<a href='chooseharvest.php?glid=",$rs1['lid'] ,"'><img id=\"land6\" src=\"img\p",$rs1['sid'],".png\"></a>";
+        
         //land7
         if(($rs1['lid']%7==0)&&($rs1['lstatus']==1)) //第七塊地且狀態為未解鎖
             echo "<img id=\"land7\" src=\"img\gland.png\">";
         if(($rs1['lid']%7==0)&&($rs1['lstatus']==0)) //第七塊地且狀態為可種植
             echo "<a href='selectseed.php?glid=",$rs1['lid'] ,"'><img id=\"land7\" src=\"img\land.png\"></a>";
-        if(($rs1['lid']%7==0)&&($rs1['lstatus']==2)){ //第七塊地且狀態為種植中
-            echo "<a href='seestatus.php?glid=",$rs1['lid'] ,"'><img id=\"land7\" src=\"img\grow.png\"></a>";
-			$ftime=$rs['ltime'];
-			$time=$ftime-$nowtime;
-			if($time<0){
-				$lid=$rs1['lid'];
-				$sql2 = "update land set `lstatus`=3 where `lid`='$lid' and `uid`='$id';";
-				mysqli_query($conn,$sql2);
-			}
-		}
+        if(($rs1['lid']%7==0)&&($rs1['lstatus']==2)) //第七塊地且狀態為種植中
+            echo "<a href='seestatus.php?glid=",$rs1['lid'] ,"'><img id=\"land7\" src=\"img\grow.png\"><span class=\"timer7\"></span>";
+		
 		if(($rs1['lid']%7==0)&&($rs1['lstatus']==3)) //第七塊地且狀態為種植完成
-            echo "<a href='selharvest.php?glid=",$rs1['lid'] ,"'><img id=\"land7\" src=\"img\p",$rs1['sid'],".png\"></a>";
-		header("refresh:1;url=1_main.php");
+            echo "<a href='chooseharvest.php?glid=",$rs1['lid'] ,"'><img id=\"land7\" src=\"img\p",$rs1['sid'],".png\"></a>";
+	   
     }
 
 
  ?>
 </table>
+
+
+
 <a href="2_warehouse.php" ><img id="warehouse" src="img\warehouse.png"></a>
 <a href="2_shop.php"><img id="shop" src="img\shop.png"></a>
 <a href="0_logout.php"><img id="exit" src="img\exit.png"></a>
 
-
 </div>
-<embed src="music/happy.mp3" autostart="true" hidden="true" loop="true">
+
+<embed src="music/happy.mp3" autostart=true hidden="true" loop="-1">
+
 </body>
 </html>
