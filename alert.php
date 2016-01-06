@@ -31,7 +31,7 @@ table {
     position: absolute;
     border:0; 
     border-collpase:collpase; 
-    width:250px; 
+    width:230px; 
     top:10px;
     left: 0px;
     font-weight: bold;
@@ -258,7 +258,8 @@ table {
                 $sqls = "select * from seed where sid='$sid';";
                 $resultss=mysqli_query($conn,$sqls);
                 while ($rs1=mysqli_fetch_array($resultss)) {
-                    echo "<font size=\"4\">種植",$rs1['sid'],"需要花費",$rs1['senergy'],"點體力及",$rs1['stime'],"</font>";
+                    $minute=floor($rs1['stime']/60);
+                    echo "<font size=\"4\">種植",$rs1['sid'],"需要花費",$rs1['senergy'],"點體力及",$minute,"分",$rs1['stime']-($minute*60),"秒","</font>";
                 }
             ?>
         <br/><br/><br/>
