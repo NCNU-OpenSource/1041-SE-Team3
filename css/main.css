@@ -1,0 +1,139 @@
+
+#frame {
+    position: absolute; 
+    width: 960px; 
+    top: 50%;
+    left: 50%;
+    margin: -270px 0 0 -480px;
+}
+#frame img { 
+    max-width:100%; 
+    width:expression(document.body.clientWidth>document.getElementById("frame").scrollWidth*8/10? "100%": "auto" );
+    height:auto;
+}
+table { 
+    position: absolute;
+    border:0; 
+    border-collpase:collpase; 
+    width:230px; 
+    top:10px;
+    left: 0px;
+    font-weight: bold;
+    font-family:  Arimo;
+    font-size:20px;
+
+}
+#warehouse{
+    position: absolute;
+    top: 20px;
+    left: 700px;
+}
+#exit{
+    position: absolute;
+    width: 5%;
+    height: 10%;
+    top: 30px;
+    left: 310px;
+}
+#shop{
+    position: absolute;
+    top: 280px;
+    left: 760px;
+}
+#land1{
+    position: absolute;
+    top: 240px;
+    left: 220px;
+}
+#land2{
+    position: absolute;
+    top: 360px;
+    left: 220px;
+}
+.timer2{
+    position: absolute;
+    font-size: 36px;
+    font-family: impact;
+    color:#F7D358;
+    top: 360px;
+    left: 220px;
+}
+#land3{
+    position: absolute;
+    top: 240px;
+    left: 340px;
+}
+.timer3{
+    position: absolute;
+    font-size: 36px;
+    font-family: impact;
+    color:#F7D358;
+    top: 240px;
+    left: 340px;
+}
+#land4{
+    position: absolute;
+    top: 360px;
+    left: 340px;
+}
+.timer4{
+    position: absolute;
+    font-size: 36px;
+    font-family: impact;
+    color:#F7D358;
+    top: 360px;
+    left: 340px;
+}
+#land5{
+    position: absolute;
+    top: 240px;
+    left: 460px;
+}
+.timer5{
+    position: absolute;
+    font-size: 36px;
+    font-family: impact;
+    color:#F7D358;
+    top: 240px;
+    left: 460px;
+}
+#land6{
+    position: absolute;
+    top: 360px;
+    left: 460px;
+}
+.timer6{
+    position: absolute;
+    font-size: 36px;
+    font-family: impact;
+    color:#F7D358;
+    top: 360px;
+    left: 460px;
+}
+#land7{
+    position: absolute;
+    top: 240px;
+    left: 580px;
+}
+.timer1{
+    position: absolute;
+    font-size: 36px;
+    font-family: impact;
+    color:#F7D358;
+    top: 240px;
+    left: 580px;
+}
+.progress1{
+    position: absolute;
+    width: 100px;
+    height: 20px;
+    top: 40px;
+    left: 190px;
+}
+.progress2{
+    position: absolute;
+    width: 100px;
+    height: 20px;
+    top: 70px;
+    left: 190px;
+}
