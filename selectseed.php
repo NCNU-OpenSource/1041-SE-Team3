@@ -43,7 +43,7 @@ table {
     position: absolute;
     border:0; 
     border-collpase:collpase; 
-    width:250px; 
+    width:230px; 
     top:10px;
     left: 0px;
     font-weight: bold;
