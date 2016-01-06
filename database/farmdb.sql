@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.3.11
+-- version 4.4.14
 -- http://www.phpmyadmin.net
 --
 -- 主機: 127.0.0.1
--- 產生時間： 2016 �?01 ??03 ??01:54
--- 伺服器版本: 5.6.24
--- PHP 版本： 5.6.8
+-- 產生時間： 2016-01-05 19:08:00
+-- 伺服器版本: 5.6.26
+-- PHP 版本： 5.6.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,7 +14,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- 資料庫： `farmdb`
@@ -42,34 +42,6 @@ CREATE TABLE IF NOT EXISTS `land` (
 --
 
 INSERT INTO `land` (`farmid`, `uid`, `lid`, `lmoney`, `llevel`, `lstatus`, `ltime`, `sid`) VALUES
-(1, 'sheng', 1, 0, 1, 0, NULL, NULL),
-(2, 'sheng', 2, 0, 1, 0, NULL, NULL),
-(3, 'sheng', 3, 0, 1, 0, NULL, NULL),
-(4, 'sheng', 4, 0, 1, 0, NULL, NULL),
-(5, 'sheng', 5, 5000, 2, 1, NULL, NULL),
-(6, 'sheng', 6, 5000, 2, 1, NULL, NULL),
-(7, 'sheng', 7, 5000, 2, 1, NULL, NULL),
-(8, 'jack', 1, 0, 1, 0, NULL, NULL),
-(9, 'jack', 2, 0, 1, 0, NULL, NULL),
-(10, 'jack', 3, 0, 1, 0, NULL, NULL),
-(11, 'jack', 4, 0, 1, 0, NULL, NULL),
-(12, 'jack', 5, 5000, 2, 1, NULL, NULL),
-(13, 'jack', 6, 5000, 2, 1, NULL, NULL),
-(14, 'jack', 7, 5000, 2, 1, NULL, NULL),
-(15, 'cat', 1, 0, 1, 0, NULL, NULL),
-(16, 'cat', 2, 0, 1, 0, NULL, NULL),
-(17, 'cat', 3, 0, 1, 0, NULL, NULL),
-(18, 'cat', 4, 0, 1, 0, NULL, NULL),
-(19, 'cat', 5, 5000, 2, 1, NULL, NULL),
-(20, 'cat', 6, 5000, 2, 1, NULL, NULL),
-(21, 'cat', 7, 5000, 2, 1, NULL, NULL),
-(22, 'a', 1, 0, 1, 0, NULL, NULL),
-(23, 'a', 2, 0, 1, 0, NULL, NULL),
-(24, 'a', 3, 0, 1, 0, NULL, NULL),
-(25, 'a', 4, 0, 1, 0, NULL, NULL),
-(26, 'a', 5, 5000, 2, 1, NULL, NULL),
-(27, 'a', 6, 5000, 2, 1, NULL, NULL),
-(28, 'a', 7, 5000, 2, 1, NULL, NULL),
 (29, 'taco', 1, 0, 1, 0, NULL, NULL),
 (30, 'taco', 2, 0, 1, 0, NULL, NULL),
 (31, 'taco', 3, 0, 1, 0, NULL, NULL),
@@ -110,7 +82,7 @@ INSERT INTO `product` (`pid`, `pprice`, `penergy`) VALUES
 CREATE TABLE IF NOT EXISTS `seed` (
   `sid` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
   `sprice` int(11) NOT NULL,
-  `stime` time NOT NULL,
+  `stime` int(11) NOT NULL,
   `sexp` int(11) NOT NULL,
   `senergy` int(11) NOT NULL,
   `slevel` int(11) NOT NULL
@@ -121,11 +93,11 @@ CREATE TABLE IF NOT EXISTS `seed` (
 --
 
 INSERT INTO `seed` (`sid`, `sprice`, `stime`, `sexp`, `senergy`, `slevel`) VALUES
-('beetroot', 120, '00:02:00', 15, 5, 1),
-('carrot', 150, '00:03:00', 10, 4, 1),
-('eggplant', 200, '00:05:00', 20, 10, 2),
-('tomato', 100, '00:01:00', 5, 2, 1),
-('yellowbean', 250, '00:06:00', 25, 9, 3);
+('beetroot', 120, 200, 15, 5, 1),
+('carrot', 150, 300, 10, 4, 1),
+('eggplant', 200, 500, 20, 10, 2),
+('tomato', 100, 20, 5, 2, 1),
+('yellowbean', 250, 600, 25, 9, 3);
 
 -- --------------------------------------------------------
 
@@ -154,20 +126,15 @@ CREATE TABLE IF NOT EXISTS `user` (
   `ulevel` int(11) NOT NULL DEFAULT '1',
   `uenergy` int(11) NOT NULL DEFAULT '10',
   `umoney` int(11) NOT NULL DEFAULT '1000',
-  `ucount` int(11) NOT NULL,
-  `ulogtime` datetime NOT NULL
+  `ucount` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- 資料表的匯出資料 `user`
 --
 
-INSERT INTO `user` (`uid`, `pwd`, `uname`, `uexp`, `ulevel`, `uenergy`, `umoney`, `ucount`, `ulogtime`) VALUES
-('a', '123', 'a', 0, 1, 10, 1000, 2, '0000-00-00 00:00:00'),
-('cat', '123', 'cat', 0, 1, 10, 1000, 2, '0000-00-00 00:00:00'),
-('jack', '123', 'Jack', 0, 1, 10, 1000, 1, '0000-00-00 00:00:00'),
-('sheng', '123', 'Sheng', 0, 1, 10, 1000, 4, '0000-00-00 00:00:00'),
-('taco', '123', 'Taco', 0, 1, 10, 1000, 23, '0000-00-00 00:00:00');
+INSERT INTO `user` (`uid`, `pwd`, `uname`, `uexp`, `ulevel`, `uenergy`, `umoney`, `ucount`) VALUES
+('taco', '123', 'Taco', 10, 1, 10, 0, 38);
 
 -- --------------------------------------------------------
 
@@ -189,14 +156,9 @@ CREATE TABLE IF NOT EXISTS `warehouse` (
 --
 
 INSERT INTO `warehouse` (`uid`, `sid`, `scount`, `pid`, `pcount`, `id`) VALUES
-('a', 'tomato', 1, 'tomato', 0, 1),
-('a', 'beetroot', 1, 'beetroot', 0, 2),
-('a', 'carrot', 1, 'carrot', 0, 3),
-('a', 'eggplant', 1, 'eggplant', 0, 4),
-('a', 'yellowbean', 1, 'yellowbean', 0, 5),
-('taco', 'tomato', 1, 'tomato', 0, 6),
-('taco', 'beetroot', 1, 'beetroot', 0, 7),
-('taco', 'carrot', 1, 'carrot', 0, 8),
+('taco', 'tomato', 27, 'tomato', 84, 6),
+('taco', 'beetroot', 0, 'beetroot', 1, 7),
+('taco', 'carrot', 0, 'carrot', 0, 8),
 ('taco', 'eggplant', 0, 'eggplant', 0, 9),
 ('taco', 'yellowbean', 0, 'yellowbean', 0, 10);
 
