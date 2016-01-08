@@ -16,7 +16,7 @@ $_SESSION['glid']=$lid;
 <style type="text/css">
 
 </style>
-</head>
+</head> 
 <body>
 <table>
 
