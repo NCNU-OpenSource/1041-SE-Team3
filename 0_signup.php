@@ -16,17 +16,10 @@ $name = $_POST['uname'];
 //確認密碼輸入的正確性
 if($id != null && $pwd != null && $name != null )
 {
-        //新增資料進user table
-        $sql = "insert into user (uid, pwd, uname, ulevel) values ('$id', '$pwd', '$name', '1')";
-        if(mysqli_query($conn,$sql))
-        {
-        	    header("Location:sign_success.php");
-        }        
-        else
-        {       
-        	    header("Location:sign_fail.php");
-        }
-
+    //新增資料進user table
+    $sql = "insert into user (uid, pwd, uname, ulevel) values ('$id', '$pwd', '$name', '1')";
+    if(mysqli_query($conn,$sql))
+    {
         //新增使用者id進land table
         //初始開放1,2,3,4塊土地
         $sql1 = "insert into land (lid, uid) values ('1', '$id')";
@@ -68,6 +61,13 @@ if($id != null && $pwd != null && $name != null )
         mysqli_query($conn,$sql16)or die("insert error");
         $sql17 = "insert into store (uid, sid, pid) values ('$id', 'yellowbean', 'yellowbean')";
         mysqli_query($conn,$sql17)or die("insert error");
+        
+        header("Location:sign_success.php");
+    }        
+    else
+    {       
+        header("Location:sign_fail.php");
+    }
 
 }
 else
