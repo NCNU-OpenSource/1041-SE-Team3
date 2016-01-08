@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 主機: 127.0.0.1
--- 產生時間： 2016-01-05 19:08:00
+-- 產生時間： 2016-01-08 12:10:34
 -- 伺服器版本: 5.6.26
 -- PHP 版本： 5.6.12
 
@@ -35,20 +35,27 @@ CREATE TABLE IF NOT EXISTS `land` (
   `lstatus` int(11) NOT NULL,
   `ltime` int(11) DEFAULT NULL,
   `sid` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=71 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- 資料表的匯出資料 `land`
 --
 
 INSERT INTO `land` (`farmid`, `uid`, `lid`, `lmoney`, `llevel`, `lstatus`, `ltime`, `sid`) VALUES
-(29, 'taco', 1, 0, 1, 0, NULL, NULL),
-(30, 'taco', 2, 0, 1, 0, NULL, NULL),
-(31, 'taco', 3, 0, 1, 0, NULL, NULL),
-(32, 'taco', 4, 0, 1, 0, NULL, NULL),
-(33, 'taco', 5, 5000, 2, 1, NULL, NULL),
+(29, 'taco', 1, 0, 1, 2, 1452268636, 'yellowbean'),
+(30, 'taco', 2, 0, 1, 2, 1452267980, 'tomato'),
+(31, 'taco', 3, 0, 1, 2, 1452267977, 'tomato'),
+(32, 'taco', 4, 0, 1, 2, 1452267983, 'tomato'),
+(33, 'taco', 5, 5000, 2, 0, NULL, NULL),
 (34, 'taco', 6, 5000, 2, 1, NULL, NULL),
-(35, 'taco', 7, 5000, 2, 1, NULL, NULL);
+(35, 'taco', 7, 5000, 2, 1, NULL, NULL),
+(64, 'sheng', 1, 0, 1, 0, NULL, NULL),
+(65, 'sheng', 2, 0, 1, 0, NULL, NULL),
+(66, 'sheng', 3, 0, 1, 0, NULL, NULL),
+(67, 'sheng', 4, 0, 1, 0, NULL, NULL),
+(68, 'sheng', 5, 5000, 2, 0, NULL, NULL),
+(69, 'sheng', 6, 5000, 2, 1, NULL, NULL),
+(70, 'sheng', 7, 5000, 2, 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -67,11 +74,11 @@ CREATE TABLE IF NOT EXISTS `product` (
 --
 
 INSERT INTO `product` (`pid`, `pprice`, `penergy`) VALUES
-('beetroot', 120, 8),
-('carrot', 150, 5),
-('eggplant', 200, 10),
-('tomato', 100, 5),
-('yellowbean', 250, 15);
+('beetroot', 120, 4),
+('carrot', 150, 6),
+('eggplant', 200, 8),
+('tomato', 100, 2),
+('yellowbean', 250, 10);
 
 -- --------------------------------------------------------
 
@@ -93,11 +100,11 @@ CREATE TABLE IF NOT EXISTS `seed` (
 --
 
 INSERT INTO `seed` (`sid`, `sprice`, `stime`, `sexp`, `senergy`, `slevel`) VALUES
-('beetroot', 120, 200, 15, 5, 1),
-('carrot', 150, 300, 10, 4, 1),
-('eggplant', 200, 500, 20, 10, 2),
+('beetroot', 120, 200, 15, 4, 1),
+('carrot', 150, 300, 10, 6, 1),
+('eggplant', 200, 500, 20, 8, 2),
 ('tomato', 100, 20, 5, 2, 1),
-('yellowbean', 250, 600, 25, 9, 3);
+('yellowbean', 250, 600, 25, 10, 3);
 
 -- --------------------------------------------------------
 
@@ -111,6 +118,37 @@ CREATE TABLE IF NOT EXISTS `store` (
   `pid` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
   `lid` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- 資料表的匯出資料 `store`
+--
+
+INSERT INTO `store` (`uid`, `sid`, `pid`, `lid`) VALUES
+('a', 'tomato', 'tomato', 0),
+('a', 'beetroot', 'beetroot', 0),
+('a', 'carrot', 'carrot', 0),
+('a', 'eggplant', 'eggplant', 0),
+('a', 'yellowbean', 'yellowbean', 0),
+('r', 'tomato', 'tomato', 0),
+('r', 'beetroot', 'beetroot', 0),
+('r', 'carrot', 'carrot', 0),
+('r', 'eggplant', 'eggplant', 0),
+('r', 'yellowbean', 'yellowbean', 0),
+('taco', 'tomato', 'tomato', 0),
+('taco', 'beetroot', 'beetroot', 0),
+('taco', 'carrot', 'carrot', 0),
+('taco', 'eggplant', 'eggplant', 0),
+('taco', 'yellowbean', 'yellowbean', 0),
+('amy', 'tomato', 'tomato', 0),
+('amy', 'beetroot', 'beetroot', 0),
+('amy', 'carrot', 'carrot', 0),
+('amy', 'eggplant', 'eggplant', 0),
+('amy', 'yellowbean', 'yellowbean', 0),
+('sheng', 'tomato', 'tomato', 0),
+('sheng', 'beetroot', 'beetroot', 0),
+('sheng', 'carrot', 'carrot', 0),
+('sheng', 'eggplant', 'eggplant', 0),
+('sheng', 'yellowbean', 'yellowbean', 0);
 
 -- --------------------------------------------------------
 
@@ -134,7 +172,11 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 
 INSERT INTO `user` (`uid`, `pwd`, `uname`, `uexp`, `ulevel`, `uenergy`, `umoney`, `ucount`) VALUES
-('taco', '123', 'Taco', 10, 1, 10, 0, 38);
+('a', '123', 'apple', 50, 1, 3, 1000, 2),
+('amy', '123', 'amy', 0, 1, 10, 1000, 0),
+('r', '123', 'ray', 50, 1, 3, 1000, 2),
+('sheng', '123', 'sheng', 30, 2, 10, 1000, 3),
+('taco', '123', 'Taco', 0, 1, 10, 0, 57);
 
 -- --------------------------------------------------------
 
@@ -149,18 +191,28 @@ CREATE TABLE IF NOT EXISTS `warehouse` (
   `pid` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
   `pcount` int(11) NOT NULL,
   `id` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- 資料表的匯出資料 `warehouse`
 --
 
 INSERT INTO `warehouse` (`uid`, `sid`, `scount`, `pid`, `pcount`, `id`) VALUES
-('taco', 'tomato', 27, 'tomato', 84, 6),
-('taco', 'beetroot', 0, 'beetroot', 1, 7),
-('taco', 'carrot', 0, 'carrot', 0, 8),
-('taco', 'eggplant', 0, 'eggplant', 0, 9),
-('taco', 'yellowbean', 0, 'yellowbean', 0, 10);
+('taco', 'tomato', 12, 'tomato', 17, 21),
+('taco', 'beetroot', 2, 'beetroot', 1, 22),
+('taco', 'carrot', 1, 'carrot', 1, 23),
+('taco', 'eggplant', 3, 'eggplant', 7, 24),
+('taco', 'yellowbean', 0, 'yellowbean', 0, 25),
+('amy', 'tomato', 12, 'tomato', 0, 26),
+('amy', 'beetroot', 3, 'beetroot', 0, 27),
+('amy', 'carrot', 2, 'carrot', 0, 28),
+('amy', 'eggplant', 0, 'eggplant', 0, 29),
+('amy', 'yellowbean', 1, 'yellowbean', 0, 30),
+('sheng', 'tomato', 0, 'tomato', 4, 31),
+('sheng', 'beetroot', 0, 'beetroot', 1, 32),
+('sheng', 'carrot', 1, 'carrot', 0, 33),
+('sheng', 'eggplant', 0, 'eggplant', 0, 34),
+('sheng', 'yellowbean', 0, 'yellowbean', 0, 35);
 
 --
 -- 已匯出資料表的索引
@@ -204,12 +256,12 @@ ALTER TABLE `warehouse`
 -- 使用資料表 AUTO_INCREMENT `land`
 --
 ALTER TABLE `land`
-  MODIFY `farmid` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=36;
+  MODIFY `farmid` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=71;
 --
 -- 使用資料表 AUTO_INCREMENT `warehouse`
 --
 ALTER TABLE `warehouse`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=36;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
