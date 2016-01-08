@@ -92,9 +92,17 @@ $id=$_SESSION['uid'];
     //1.印出玩家資訊
     $sql = "select * from user where uid='$id';";
     $results=mysqli_query($conn,$sql);
+
     
     //1.1玩家等級顯示圖片
-    while ($rs=mysqli_fetch_array($results)) {    
+    while ($rs=mysqli_fetch_array($results)) { 
+        
+        //升等
+        if($rs['uexp']>=100*$rs['ulevel']){
+            $sqllv = "update user set uexp=0, ulevel=ulevel+1 where `uid`='$id' ;";
+            mysqli_query($conn,$sqllv) or die("MySQL query error"); 
+        }
+
         if($rs['ulevel']==1){
             echo "<tr><td rowspan='3'><img src=\"img\lv1.png\"></td>";
         }
@@ -133,7 +141,7 @@ $id=$_SESSION['uid'];
              "<div class=\"progress\">",
              "<div class=\"progress-bar progress-bar-danger progress-bar-striped active\" role=\"progressbar\" aria-valuenow=\"$engprocess\" aria-valuemin=\"0\" aria-valuemax=\"100\" style=\"width:$engprocess%; \">",
              $rs['uenergy']," / ","10","</div></div></div>";
-
+        
     }
 
     //印出土地狀態
@@ -145,7 +153,7 @@ $id=$_SESSION['uid'];
         if(($rs1['lid']%7==1)&&($rs1['lstatus']==0)) //第一塊地且狀態為可種植
             echo "<a href='selectseed.php?glid=",$rs1['lid'] ,"'><img id=\"land1\" src=\"img\land.png\"></a>";
         if(($rs1['lid']%7==1)&&($rs1['lstatus']==2)){ //第一塊地且狀態為種植中
-            echo "<a href='seestatus.php?glid=",$rs1['lid'] ,"'><img id=\"land1\" src=\"img\grow.png\"></a><span class=\"timer1\"></span>";
+            echo "<img id=\"land1\" src=\"img\grow.png\"></a><span class=\"timer1\"></span>";
 		}
         if(($rs1['lid']%7==1)&&($rs1['lstatus']==3)) //第一塊地且狀態為種植完成
           echo "<a href='chooseharvest.php?glid=",$rs1['lid'] ,"'><img id=\"land1\" src=\"img\p",$rs1['sid'],".png\"></a>";
@@ -154,7 +162,7 @@ $id=$_SESSION['uid'];
         if(($rs1['lid']%7==2)&&($rs1['lstatus']==0)) //第二塊地且狀態為可種植
             echo "<a href='selectseed.php?glid=",$rs1['lid'] ,"'><img id=\"land2\"  src=\"img\land.png\"></a>";
         if(($rs1['lid']%7==2)&&($rs1['lstatus']==2)) //第二塊地且狀態為種植中
-            echo "<a href='seestatus.php?glid=",$rs1['lid'] ,"'><img id=\"land2\" src=\"img\grow.png\"></a><span class=\"timer2\"></span>";
+            echo "<img id=\"land2\" src=\"img\grow.png\"></a><span class=\"timer2\"></span>";
 		
 		if(($rs1['lid']%7==2)&&($rs1['lstatus']==3)) //第二塊地且狀態為種植完成
             echo "<a href='chooseharvest.php?glid=",$rs1['lid'] ,"'><img id=\"land2\" src=\"img\p",$rs1['sid'],".png\"></a>";
@@ -163,7 +171,7 @@ $id=$_SESSION['uid'];
         if(($rs1['lid']%7==3)&&($rs1['lstatus']==0)) //第三塊地且狀態為可種植
             echo "<a href='selectseed.php?glid=",$rs1['lid'] ,"'><img id=\"land3\" src=\"img\land.png\"></a>";
         if(($rs1['lid']%7==3)&&($rs1['lstatus']==2)) //第三塊地且狀態為種植中
-            echo "<a href='seestatus.php?glid=",$rs1['lid'] ,"'><img id=\"land3\" src=\"img\grow.png\"></a><span class=\"timer3\"></span>";
+            echo "<img id=\"land3\" src=\"img\grow.png\"></a><span class=\"timer3\"></span>";
 		if(($rs1['lid']%7==3)&&($rs1['lstatus']==3)) //第三塊地且狀態為種植完成
             echo "<a href='chooseharvest.php?glid=",$rs1['lid'] ,"'><img id=\"land3\" src=\"img\p",$rs1['sid'],".png\"></a>";
         
@@ -171,7 +179,7 @@ $id=$_SESSION['uid'];
         if(($rs1['lid']%7==4)&&($rs1['lstatus']==0)) //第四塊地且狀態為可種植
             echo "<a href='selectseed.php?glid=",$rs1['lid'] ,"'><img id=\"land4\" src=\"img\land.png\"></a>";
         if(($rs1['lid']%7==4)&&($rs1['lstatus']==2)) //第四塊地且狀態為種植中
-           echo "<a href='seestatus.php?glid=",$rs1['lid'] ,"'><img id=\"land4\" src=\"img\grow.png\"></a><span class=\"timer4\"></span>";
+           echo "<img id=\"land4\" src=\"img\grow.png\"></a><span class=\"timer4\"></span>";
 		
 		if(($rs1['lid']%7==4)&&($rs1['lstatus']==3)) //第四塊地且狀態為種植完成
             echo "<a href='chooseharvest.php?glid=",$rs1['lid'] ,"'><img id=\"land4\" src=\"img\p",$rs1['sid'],".png\"></a>";
@@ -182,7 +190,7 @@ $id=$_SESSION['uid'];
         if(($rs1['lid']%7==5)&&($rs1['lstatus']==0)) //第五塊地且狀態為可種植
             echo "<a href='selectseed.php?glid=",$rs1['lid'] ,"'><img id=\"land5\" src=\"img\land.png\"></a>";
         if(($rs1['lid']%7==5)&&($rs1['lstatus']==2)){ //第五塊地且狀態為種植中
-            echo "<a href='seestatus.php?glid=",$rs1['lid'] ,"'><img id=\"land5\" src=\"img\grow.png\"></a><span class=\"timer5\"></span>";
+            echo "<img id=\"land5\" src=\"img\grow.png\"></a><span class=\"timer5\"></span>";
 		}
 		if(($rs1['lid']%7==5)&&($rs1['lstatus']==3)) //第五塊地且狀態為種植完成
             echo "<a href='chooseharvest.php?glid=",$rs1['lid'] ,"'><img id=\"land5\" src=\"img\p",$rs1['sid'],".png\"></a>";
@@ -193,7 +201,7 @@ $id=$_SESSION['uid'];
         if(($rs1['lid']%7==6)&&($rs1['lstatus']==0)) //第六塊地且狀態為可種植
             echo "<a href='selectseed.php?glid=",$rs1['lid'] ,"'><img id=\"land6\" src=\"img\land.png\"></a>";
         if(($rs1['lid']%7==6)&&($rs1['lstatus']==2)) //第六塊地且狀態為種植中
-            echo "<a href='seestatus.php?glid=",$rs1['lid'] ,"'><img id=\"land6\" src=\"img\grow.png\"><span class=\"timer6\"></span>";
+            echo "<img id=\"land6\" src=\"img\grow.png\"><span class=\"timer6\"></span>";
 		
 		if(($rs1['lid']%7==6)&&($rs1['lstatus']==3)) //第六塊地且狀態為種植完成
             echo "<a href='chooseharvest.php?glid=",$rs1['lid'] ,"'><img id=\"land6\" src=\"img\p",$rs1['sid'],".png\"></a>";
@@ -204,7 +212,7 @@ $id=$_SESSION['uid'];
         if(($rs1['lid']%7==0)&&($rs1['lstatus']==0)) //第七塊地且狀態為可種植
             echo "<a href='selectseed.php?glid=",$rs1['lid'] ,"'><img id=\"land7\" src=\"img\land.png\"></a>";
         if(($rs1['lid']%7==0)&&($rs1['lstatus']==2)) //第七塊地且狀態為種植中
-            echo "<a href='seestatus.php?glid=",$rs1['lid'] ,"'><img id=\"land7\" src=\"img\grow.png\"><span class=\"timer7\"></span>";
+            echo "<img id=\"land7\" src=\"img\grow.png\"><span class=\"timer7\"></span>";
 		
 		if(($rs1['lid']%7==0)&&($rs1['lstatus']==3)) //第七塊地且狀態為種植完成
             echo "<a href='chooseharvest.php?glid=",$rs1['lid'] ,"'><img id=\"land7\" src=\"img\p",$rs1['sid'],".png\"></a>";
@@ -218,12 +226,12 @@ $id=$_SESSION['uid'];
 
 
 <a href="2_warehouse.php" ><img id="warehouse" src="img\warehouse.png"></a>
-<a href="2_shop.php"><img id="shop" src="img\shop.png"></a>
+<a href="2_shop_seed.php"><img id="shop" src="img\shop.png"></a>
 <a href="0_logout.php"><img id="exit" src="img\exit.png"></a>
 
 </div>
 
-<embed src="music/happy.mp3" autostart=true hidden="true" loop="-1">
+<audio src="music/happy.mp3" controls autoplay loop hidden="true" >
 
 </body>
 </html>
