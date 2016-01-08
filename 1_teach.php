@@ -38,7 +38,7 @@ table {
     position: absolute;
     border:0; 
     border-collpase:collpase; 
-    width:250px; 
+    width:230px; 
     top:10px;
     left: 0px;
     font-weight: bold;
@@ -270,7 +270,7 @@ table {
     <div class="show5"></div>
     <div class="show6"></div>
 </div>
-<embed src="music/happy.mp3" autostart="true" hidden="true" loop="true">
+<audio src="music/happy.mp3" controls autoplay loop hidden="true" >
 
 </div>
 </body>
