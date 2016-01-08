@@ -25,11 +25,13 @@ $id=$_SESSION['uid'];
     border:0; 
     border-collpase:collpase;  
     top: 150px;
-    left: 90px;
+    left: 60px;
     font-weight: bold;
     font-family:  Arimo;
     font-size:30px;
     color:white;
+    width: 900px;
+    height: 300px;
 }
 #menu{
     position: absolute;
@@ -74,7 +76,7 @@ td {
 <a href="2_warehouse.php"><p id="product">成品</p></a>
 <a href="2_warehouse_seed.php"><p id="seed">種子</p></a>
 <table id='list1' >
-<tr><td><img src='img\tomato.png' width='115' height='110'></td>
+<tr><td><img src='img\stomato.png' width='150' height='150'></td>
 <?php //獲得tomato的數量
 	$sql = "select * from warehouse where uid ='$id' and pid = 'tomato' ;";
     $results=mysqli_query($conn,$sql);	
@@ -82,7 +84,7 @@ td {
 		echo "<td width = 170px>",$rs['scount'] ," unit</td>" ;
 	}
 ?>
-<td><img src='img\eggplant.png' width='95' height='95'></td>
+<td><img src='img\seggplant.png' width='150' height='150'></td>
 <?php //獲得tomato的數量
 	$sql = "select * from warehouse where uid ='$id'and pid = 'eggplant' ;";
     $results=mysqli_query($conn,$sql);	
@@ -90,7 +92,7 @@ td {
 		echo "<td width = 170px>",$rs['scount'] ," unit</td>" ;
 	}
 ?>
-<td><img src='img\carrot.png' width='95' height='95'></td>
+<td><img src='img\scarrot.png' width='150' height='150'></td>
 <?php //獲得tomato的數量
 	$sql = "select * from warehouse where uid ='$id' and pid = 'carrot' ;";
     $results=mysqli_query($conn,$sql);	
@@ -98,7 +100,7 @@ td {
 		echo "<td width = 170px>",$rs['scount'] ," unit</td>" ;
 	}
 ?>
-<tr><td><img src='img\beetroot.png' width='95' height='95'></td>
+<tr><td><img src='img\sbeetroot.png' width='150' height='150'></td>
 <?php //獲得tomato的數量
 	$sql = "select * from warehouse where uid ='$id' and pid = 'beetroot' ;";
     $results=mysqli_query($conn,$sql);	
@@ -106,7 +108,7 @@ td {
 		echo "<td width = 170px>",$rs['scount'] ," unit</td>" ;
 	}
 ?>
-<td><img src='img\yellowbean.png' width='95' height='95'></td>
+<td><img src='img\syellowbean.png' width='150' height='150'></td>
 <?php //獲得tomato的數量
 	$sql = "select * from warehouse where uid ='$id' and pid = 'yellowbean' ;";
     $results=mysqli_query($conn,$sql);	
@@ -117,6 +119,6 @@ td {
 
 </table>
 </div>
-<embed src="music/happy.mp3" autostart="true" hidden="true" loop="true">
+<audio src="music/happy.mp3" controls autoplay loop hidden="true" >
 </body>
 </html>
