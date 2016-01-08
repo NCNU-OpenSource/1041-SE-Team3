@@ -163,6 +163,6 @@ td {
 </table>
 </form>
 </div>
-<embed src="music/happy.mp3" autostart="true" hidden="true" loop="true">
+<audio src="music/happy.mp3" controls autoplay loop hidden="true" >
 </body>
 </html>
