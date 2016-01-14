@@ -50,6 +50,14 @@ $id=$_SESSION['uid'];
     left: 220px;
     z-index: 5;
 }
+.timer7{
+    position: absolute;
+    font-size: 36px;
+    font-family: impact;
+    color:#F7D358;
+    top: 240px;
+    left: 580px;
+}
 </style>
 
 
